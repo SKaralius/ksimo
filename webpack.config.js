@@ -11,6 +11,18 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "assets/fonts/",
+            },
+          },
+        ],
+      },
+      {
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
@@ -27,6 +39,10 @@ module.exports = {
         use: [
           {
             loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "assets/img/",
+            },
           },
         ],
       },

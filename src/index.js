@@ -3,6 +3,16 @@ import "./styles/main.scss";
 
 let body = document.getElementsByTagName("body")[0];
 console.log(body);
-body.innerHTML += "<h1>Hello world</h1>";
-alert("conencted");
-gsap.from(body, { duration: 1, x: 100 });
+
+const number = () => Math.floor(Math.random() * 255);
+
+const circle = `
+ <div
+      style="left:1rem; top:1rem; box-shadow: inset 0 0 10px rgb(${number()}, ${number()}, ${number()});"
+      class="circle"
+    ></div>
+`;
+
+body.innerHTML += circle;
+const circleNode = document.getElementsByClassName("circle")[0];
+gsap.to(circleNode, { y: 500, duration: 1 });

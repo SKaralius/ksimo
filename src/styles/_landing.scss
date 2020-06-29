@@ -1,0 +1,27 @@
+.landing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.title-container {
+  margin-top: 2rem;
+}
+h1 {
+  font-weight: 400;
+  text-align: center;
+  font-family: $titleFont;
+  color: $primaryColor;
+  font-size: $titleSize;
+
+  margin: 0;
+}
+h2 {
+  font-weight: 400;
+  text-align: center;
+  font-family: $titleFont;
+  color: $primaryColor;
+  font-size: calc(#{$titleSize / 1.5});
+
+  margin: 3rem;
+}
