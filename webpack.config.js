@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+  mode: "none",
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin()],
@@ -17,6 +18,7 @@ module.exports = {
           // Translates CSS into CommonJS
           "css-loader",
           // Compiles Sass to CSS
+          "postcss-loader",
           "sass-loader",
         ],
       },
