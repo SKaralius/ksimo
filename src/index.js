@@ -199,58 +199,81 @@ console.log(canvas);
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 
-ctx.fillStyle = "blue";
+ctx.fillStyle = "#000080";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-ctx.beginPath();
-ctx.arc(100, 75, 50, 0, 2 * Math.PI);
-ctx.stroke();
+// The Circle class
+function ColoredCircle(x, y, dx, dy, radius, color) {
+  this.x = x;
+  this.y = y;
+  this.dx = dx;
+  this.dy = dy;
 
-// Iterate to draw 4 circles
-for (let i = 0; i < 4; i++) {
-  // Generate x and y values between 0 to 140 considering 30 pt radius
-  let x = 30 + Math.random() * 140;
-  let y = 30 + Math.random() * 140;
+  this.radius = radius;
+  this.color = color;
 
-  // Begin Path
-  ctx.beginPath();
+  this.draw = function () {
+    ctx.beginPath();
 
-  // Arc Operation
-  ctx.arc(x, y, 30, 0, Math.PI * 2, false);
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
 
-  // Fill Stroke
-  ctx.stroke();
+    ctx.strokeStyle = this.color;
+
+    ctx.stroke();
+  };
+
+  this.update = function () {
+    if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+      this.dx = -this.dx;
+    }
+
+    if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+      this.dy = -this.dy;
+    }
+
+    this.x += this.dx;
+    this.y += this.dy;
+
+    this.draw();
+  };
 }
+
+var coloredCircles = [];
+
+var circleColors = ["red", "#8B008B", "blue", "#9932CC", "#4B0082"];
 
 // Radius
 var radius = 50;
 
-// Starting Position
-var x = radius + Math.random() * (canvas.width - radius * 2);
-var y = radius + Math.random() * (canvas.height - radius * 2);
+for (var i = 0; i < 5; i++) {
+  // Starting Position
+  var x = Math.random() * (canvas.width - radius * 2) + radius;
+  var y = Math.random() * (canvas.height - radius * 2) + radius;
 
-// Speed in x and y direction
-var dx = (Math.random() - 0.5) * 2;
-var dy = (Math.random() - 0.5) * 2;
+  // Speed in x and y direction
+  var dx = (Math.random() - 0.5) * 70;
+  var dy = (Math.random() - 0.5) * 70;
 
-function animate3() {
-  requestAnimationFrame(animate3);
+  // Color
+  var color = circleColors[i];
 
-  if (x + radius > canvas.width || x - radius < 0) {
-    dx = -dx;
-  }
-
-  if (y + radius > canvas.height || y - radius < 0) {
-    dy = -dy;
-  }
-
-  x += dx;
-  y += dy;
-
-  ctx.beginPath();
-  ctx.arc(x, y, 50, 0, Math.PI * 2, false);
-  ctx.stroke();
+  coloredCircles.push(new ColoredCircle(x, y, dx, dy, radius, color));
 }
 
-// Animate the Circle
-animate3();
+function animate5() {
+  requestAnimationFrame(animate5);
+
+  for (var r = 0; r < 5; r++) {
+    coloredCircles[r].update();
+  }
+}
+
+animate5();
+
+document.addEventListener("resize", () => {
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+});
+window.addEventListener("load", function () {
+  console.log("All assets are loaded");
+});
