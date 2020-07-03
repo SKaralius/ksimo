@@ -191,3 +191,66 @@ arrayOfPositions.forEach((position, index) => {
 //   backgroundColor: "red",
 //   duration: 10,
 // });
+
+const canvas = document.getElementsByTagName("canvas")[0];
+const ctx = canvas.getContext("2d");
+
+console.log(canvas);
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+ctx.fillStyle = "blue";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+ctx.beginPath();
+ctx.arc(100, 75, 50, 0, 2 * Math.PI);
+ctx.stroke();
+
+// Iterate to draw 4 circles
+for (let i = 0; i < 4; i++) {
+  // Generate x and y values between 0 to 140 considering 30 pt radius
+  let x = 30 + Math.random() * 140;
+  let y = 30 + Math.random() * 140;
+
+  // Begin Path
+  ctx.beginPath();
+
+  // Arc Operation
+  ctx.arc(x, y, 30, 0, Math.PI * 2, false);
+
+  // Fill Stroke
+  ctx.stroke();
+}
+
+// Radius
+var radius = 50;
+
+// Starting Position
+var x = radius + Math.random() * (canvas.width - radius * 2);
+var y = radius + Math.random() * (canvas.height - radius * 2);
+
+// Speed in x and y direction
+var dx = (Math.random() - 0.5) * 2;
+var dy = (Math.random() - 0.5) * 2;
+
+function animate3() {
+  requestAnimationFrame(animate3);
+
+  if (x + radius > canvas.width || x - radius < 0) {
+    dx = -dx;
+  }
+
+  if (y + radius > canvas.height || y - radius < 0) {
+    dy = -dy;
+  }
+
+  x += dx;
+  y += dy;
+
+  ctx.beginPath();
+  ctx.arc(x, y, 50, 0, Math.PI * 2, false);
+  ctx.stroke();
+}
+
+// Animate the Circle
+animate3();
