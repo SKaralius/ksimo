@@ -3,7 +3,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { getPositions } from "./getPositions";
 import { placeItemsInPositions } from "./placeItemsInPositions";
+import { listenForEvents } from "./eventListeners";
 import "./styles/main.scss";
+import { newAnimation } from "./newAnimation";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(MotionPathPlugin);
@@ -22,19 +24,11 @@ const number = () => Math.floor(Math.random() * 255);
 const circleNode = document.getElementsByClassName("circle")[0];
 const squareNode = document.getElementsByClassName("square")[0];
 
-console.log(squareNode.offsetTop);
-console.log(squareNode.offsetLeft);
-function draw() {
-  console.log(circleNode.offsetLeft, circleNode.offsetTop);
-}
-
-draw();
-
 let coords = MotionPathPlugin.getRelativePosition(
   circleNode,
   squareNode,
-  [0.5, 0],
-  [0.5, 1]
+  [0.5, 0.5],
+  [0.5, 0.5]
 );
 
 gsap.to(circleNode, {
@@ -44,17 +38,16 @@ gsap.to(circleNode, {
     end: "50%",
     scrub: true,
   },
-  x: "+=" + coords.x,
-  y: "+=" + coords.y,
+  x: coords.x,
+  y: coords.y,
   borderRadius: "0",
   width: "5rem",
   height: "5rem",
-  marginLeft: "5rem",
 });
 
 coords = MotionPathPlugin.getRelativePosition(
   circleNode,
-  document.getElementsByClassName("projects")[0],
+  document.getElementsByClassName("projects-title")[0],
   [0.5, 0],
   [0.5, 1]
 );
@@ -75,68 +68,36 @@ gsap.to(circleNode, {
   marginLeft: "5rem",
 });
 
-const circleHTML = `
-<div
-style="opacity: 0; box-shadow: inset 0 0 10px rgb(${number()}, ${number()}, ${number()});"
-class="circle"
-></div>
-`;
+// const circleHTML = `
+// <div
+// style="opacity: 0; box-shadow: inset 0 0 10px rgb(${number()}, ${number()}, ${number()});"
+// class="circle"
+// ></div>
+// `;
 
-for (let i = 0; i < 6; i++) {
-  document.getElementsByClassName("projects-text")[0].innerHTML += circleHTML;
-}
+// const arrayOfPositions = [
+//   { x: coords.x + 0, y: coords.y + 325 },
+//   { x: 0, y: 350 },
+//   { x: 50, y: 500 },
+//   { x: 50, y: 400 },
+//   { x: 50, y: 450 },
+//   { x: 0, y: 500 },
+//   { x: 0, y: 600 },
+// ];
 
-const circleNodes = document.getElementsByClassName("circle");
-
-gsap.to(circleNode, {
-  scrollTrigger: {
-    trigger: ".what-section",
-    start: "0%",
-    end: "70%",
-    scrub: 3,
-  },
-  opacity: 0,
-});
-
-gsap.to(circleNodes, {
-  scrollTrigger: {
-    trigger: ".what-section",
-    start: "top 70%",
-    end: "50% 70%",
-    scrub: true,
-  },
-  opacity: "1",
-});
-coords = MotionPathPlugin.getRelativePosition(
-  circleNode,
-  document.getElementsByClassName("what-section")[0],
-  [0.5, 0],
-  [0.5, 1]
-);
-
-const arrayOfPositions = [
-  { x: coords.x + 0, y: coords.y + 325 },
-  { x: 0, y: 350 },
-  { x: 50, y: 500 },
-  { x: 50, y: 400 },
-  { x: 50, y: 450 },
-  { x: 0, y: 500 },
-  { x: 0, y: 600 },
-];
-
-arrayOfPositions.forEach((position, index) => {
-  console.log(index);
-  gsap.to(circleNodes[index], {
-    motionPath: [{ x: 50, y: 50 }, position],
-    scrollTrigger: {
-      trigger: ".what-section",
-      start: "top 70%",
-      end: "50% 70%",
-      scrub: true,
-    },
-    stagger: 0.5,
-  });
-});
+// arrayOfPositions.forEach((position, index) => {
+//   console.log(index);
+//   gsap.to(circleNodes[index], {
+//     motionPath: [{ x: 50, y: 50 }, position],
+//     scrollTrigger: {
+//       trigger: ".what-section",
+//       start: "top 70%",
+//       end: "50% 70%",
+//       scrub: true,
+//     },
+//     stagger: 0.5,
+//   });
+// });
 
 // gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 // gsap.defaults({ ease: "none" });
@@ -192,18 +153,24 @@ arrayOfPositions.forEach((position, index) => {
 //   duration: 10,
 // });
 
+// CANVAS
+
+let currentShape = "circle";
+
 const canvas = document.getElementsByTagName("canvas")[0];
 const ctx = canvas.getContext("2d");
 
-console.log(canvas);
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
-
-ctx.fillStyle = "#000080";
-ctx.fillRect(0, 0, canvas.width, canvas.height);
+function setUpContext(shape) {
+  coloredCircles = [];
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  ctx.clearRect(0, 0, canvas.innerWidth, canvas.innerHeight);
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  InitializeCircles(canvas, radius, coloredCircles, shape);
+}
 
 // The Circle class
-function ColoredCircle(x, y, dx, dy, radius, color) {
+function ColoredShape(x, y, dx, dy, radius, color, shape) {
   this.x = x;
   this.y = y;
   this.dx = dx;
@@ -214,8 +181,11 @@ function ColoredCircle(x, y, dx, dy, radius, color) {
 
   this.draw = function () {
     ctx.beginPath();
-
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+    if (shape === "circle") {
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+    } else if (shape === "square") {
+      ctx.rect(this.x, this.y, radius, radius);
+    }
 
     ctx.strokeStyle = this.color;
 
@@ -223,12 +193,22 @@ function ColoredCircle(x, y, dx, dy, radius, color) {
   };
 
   this.update = function () {
-    if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
-      this.dx = -this.dx;
-    }
+    if (shape === "circle") {
+      if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+        this.dx = -this.dx;
+      }
 
-    if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
-      this.dy = -this.dy;
+      if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+        this.dy = -this.dy;
+      }
+    } else if (shape === "square") {
+      if (this.x + this.radius > canvas.width || this.x < 0) {
+        this.dx = -this.dx;
+      }
+
+      if (this.y + this.radius > canvas.height || this.y < 0) {
+        this.dy = -this.dy;
+      }
     }
 
     this.x += this.dx;
@@ -245,7 +225,13 @@ var circleColors = ["#192841", "#192841", "blue", "#192841", "#2B072A"];
 // Radius
 var radius = 50;
 
-function InitializeCircles(canvas, radius, coloredCircles) {
+function InitializeCircles(
+  canvas,
+  radius,
+  coloredCircles,
+  shape,
+  uniformColor
+) {
   for (var i = 0; i < 5; i++) {
     // Starting Position
     var x = Math.random() * (canvas.width - radius * 2) + radius;
@@ -256,35 +242,107 @@ function InitializeCircles(canvas, radius, coloredCircles) {
     var dy = (Math.random() - 0.5) * 10;
 
     // Color
-    var color = circleColors[i];
+    var color = uniformColor || circleColors[i];
 
-    coloredCircles.push(new ColoredCircle(x, y, dx, dy, radius, color));
+    coloredCircles.push(new ColoredShape(x, y, dx, dy, radius, color, shape));
   }
 }
 
-InitializeCircles(canvas, radius, coloredCircles);
+setUpContext(currentShape);
 
-function animate5() {
-  requestAnimationFrame(animate5);
+let animationActive = false;
 
-  for (var r = 0; r < 5; r++) {
-    coloredCircles[r].update();
+function draw() {
+  requestAnimationFrame(draw);
+  if (!animationActive) {
+    for (var r = 0; r < coloredCircles.length; r++) {
+      for (let i = 0; i < 2; i++) {
+        coloredCircles[r].update();
+      }
+    }
   }
 }
 
-animate5();
+draw();
 
-window.addEventListener("load", function () {
-  console.log("All assets are loaded");
+// setTimeout(
+//   () =>
+//     coloredCircles.push(
+//       new ColoredShape(
+//         Math.random() * (canvas.width - radius * 2) + radius,
+//         Math.random() * (canvas.width - radius * 2) + radius,
+//         (Math.random() - 0.5) * 10,
+//         (Math.random() - 0.5) * 10,
+//         radius,
+//         "#FFF",
+//         "square"
+//       )
+//     ),
+//   5000
+// );
+
+listenForEvents(setUpContext, currentShape);
+
+ScrollTrigger.create({
+  trigger: ".about",
+  start: "top center",
+  end: "center+=200px center",
+  onToggle: (self) => {
+    console.log("toggled, isActive:", self.isActive);
+    let color = 0;
+    coloredCircles = [];
+    if (currentShape === "square") {
+      currentShape = "circle";
+      InitializeCircles(canvas, radius, coloredCircles, "circle");
+    } else {
+      currentShape = "square";
+      color = 0.5;
+      InitializeCircles(canvas, radius, coloredCircles, "square");
+    }
+    // setUpContext(currentShape);
+    // ctx.fillStyle = `rgb(${color * 255}, ${color * 255}, ${color * 255})`;
+    // ctx.fillRect(0, 0, canvas.width, canvas.height);
+  },
+  onUpdate: (self) => {
+    ctx.fillStyle = `rgba(0, 0, 0, ${self.progress.toFixed(1) / 2})`;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    console.log(
+      "progress:",
+      self.progress.toFixed(3),
+      "direction:",
+      self.direction,
+      "velocity",
+      self.getVelocity()
+    );
+  },
 });
 
-window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-  ctx.fillStyle = "#000080";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  InitializeCircles(canvas, radius, coloredCircles);
-  console.log(window.innerHeight);
-  console.log(window.innerWidth);
+let animationID = "";
+
+ScrollTrigger.create({
+  trigger: ".what-section",
+  start: "top center",
+  end: "center+=200px center",
+  onToggle: (self) => {
+    if (animationActive) {
+      animationActive = false;
+      cancelAnimationFrame(animationID);
+    } else {
+      cancelAnimationFrame(animationID);
+      animationActive = true;
+      animationID = newAnimation(ctx, canvas);
+    }
+    console.log("toggled, isActive:", self.isActive);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  },
+  onUpdate: (self) => {
+    console.log(
+      "progress:",
+      self.progress.toFixed(3),
+      "direction:",
+      self.direction,
+      "velocity",
+      self.getVelocity()
+    );
+  },
 });
