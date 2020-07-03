@@ -1,8 +1,13 @@
+.circle-container {
+  position: absolute;
+}
+
 .circle {
+  position: absolute;
+  z-index: 20;
   background-color: $primaryColor;
   border-radius: 16px;
   height: 2rem;
   width: 2rem;
-  margin: 1rem;
-  position: fixed;
+  margin-left: 7rem;
 }

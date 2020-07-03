@@ -1,0 +1,8 @@
+.projects-text {
+  margin: 2rem 2rem;
+  font-size: 1.2rem;
+  color: $tertiaryColor;
+  & > p {
+    margin: 0;
+  }
+}

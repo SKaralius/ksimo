@@ -5,7 +5,7 @@
   height: 100vh;
 }
 .title-container {
-  margin-top: 2rem;
+  margin-bottom: 5rem;
 }
 h1 {
   font-weight: 400;
@@ -24,4 +24,16 @@ h2 {
   font-size: calc(#{$titleSize / 1.5});
 
   margin: 3rem;
+}
+
+.developer-dot {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.developer {
+  margin: 0;
+  display: inline;
+  margin-right: 0.5rem;
 }
