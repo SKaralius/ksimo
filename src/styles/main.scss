@@ -8,6 +8,14 @@
 @import "projects";
 
 @font-face {
+  font-family: "monotonregular";
+  src: url("../assets/fonts/monoton-regular-webfont.woff2") format("woff2"),
+    url("../assets/fonts/monoton-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: "scottiesregular";
   src: url("../assets/fonts/scotties-webfont.woff2") format("woff2"),
     url("../assets/fonts/scotties-webfont.woff") format("woff");

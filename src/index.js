@@ -240,25 +240,29 @@ function ColoredCircle(x, y, dx, dy, radius, color) {
 
 var coloredCircles = [];
 
-var circleColors = ["red", "#8B008B", "blue", "#9932CC", "#4B0082"];
+var circleColors = ["#192841", "#192841", "blue", "#192841", "#2B072A"];
 
 // Radius
 var radius = 50;
 
-for (var i = 0; i < 5; i++) {
-  // Starting Position
-  var x = Math.random() * (canvas.width - radius * 2) + radius;
-  var y = Math.random() * (canvas.height - radius * 2) + radius;
+function InitializeCircles(canvas, radius, coloredCircles) {
+  for (var i = 0; i < 5; i++) {
+    // Starting Position
+    var x = Math.random() * (canvas.width - radius * 2) + radius;
+    var y = Math.random() * (canvas.height - radius * 2) + radius;
 
-  // Speed in x and y direction
-  var dx = (Math.random() - 0.5) * 70;
-  var dy = (Math.random() - 0.5) * 70;
+    // Speed in x and y direction
+    var dx = (Math.random() - 0.5) * 10;
+    var dy = (Math.random() - 0.5) * 10;
 
-  // Color
-  var color = circleColors[i];
+    // Color
+    var color = circleColors[i];
 
-  coloredCircles.push(new ColoredCircle(x, y, dx, dy, radius, color));
+    coloredCircles.push(new ColoredCircle(x, y, dx, dy, radius, color));
+  }
 }
+
+InitializeCircles(canvas, radius, coloredCircles);
 
 function animate5() {
   requestAnimationFrame(animate5);
@@ -270,10 +274,17 @@ function animate5() {
 
 animate5();
 
-document.addEventListener("resize", () => {
-  canvas.height = window.innerHeight;
-  canvas.width = window.innerWidth;
-});
 window.addEventListener("load", function () {
   console.log("All assets are loaded");
+});
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  ctx.fillStyle = "#000080";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  InitializeCircles(canvas, radius, coloredCircles);
+  console.log(window.innerHeight);
+  console.log(window.innerWidth);
 });
