@@ -5,7 +5,8 @@
   right: 0;
   height: 3rem;
   width: 6rem;
-  background-color: $secondaryColor;
+  background-color: darken($secondaryColor, 50);
+  border: $primaryColor 3px inset;
 
   display: flex;
   flex-direction: column;
@@ -24,11 +25,14 @@
       padding: 0 0.5rem;
       flex: 1;
       display: flex;
+      justify-content: center;
       align-items: center;
     }
   }
   & > ul,
   a {
+    color: $primaryColor;
+    font-family: orbitron;
     margin: 0;
     line-height: 1.5rem;
     text-decoration: none;
@@ -46,12 +50,12 @@
 h5 {
   color: $primaryColor;
   margin: 0;
-  font-size: calc(#{$titleSize} - #{0.4rem});
+  font-size: calc(#{$titleSize});
   font-family: $titleFont;
   margin: 0;
   margin-left: 1rem;
   font-weight: 200;
-  word-spacing: 0.5rem;
+  word-spacing: 100vw;
 }
 
 h6 {
@@ -69,8 +73,8 @@ h6 {
   line-height: 0;
   font-weight: 900;
   font-size: 1.7rem;
-  width: 2rem;
-  height: 2rem;
+  width: 3rem;
+  height: 3rem;
   position: fixed;
   z-index: 1;
   right: 0.5rem;

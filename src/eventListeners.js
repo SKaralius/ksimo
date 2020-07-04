@@ -6,10 +6,12 @@ export function listenForEvents(setUpContext) {
   window.addEventListener("resize", () => {
     setUpContext();
     const video = document.getElementsByTagName("video")[0];
-    // if (window.screen.width < 352) {
-    //   video.width = window.screen.width;
-    // }
+    if (window.screen.width > 352) {
+      video.width = 352;
+      video.style.height = "100%";
+    }
     if (window.screen.height < 812) {
+      video.style.height = "";
       video.height = window.screen.height - 80;
     }
   });

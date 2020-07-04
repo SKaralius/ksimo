@@ -162,3 +162,32 @@ if (window.screen.height < 812) {
 }
 
 contact();
+
+let timeout;
+
+function startShifting() {
+  timeout = setTimeout(() => {
+    currentShape === "square"
+      ? (currentShape = "circle")
+      : (currentShape = "square");
+    setUpContext();
+    startShifting();
+  }, Math.random() * 3000 + 1500);
+}
+
+video.addEventListener("play", () => {
+  shapeColors = ["red", "green", "orange", "blue", "cyan"];
+  startShifting();
+  setUpContext();
+});
+
+function endShifting() {
+  shapeColors = ["#1f0e47", "#300317", "#160e6b", "#23042e", "#2B072A"];
+  currentShape = "circle";
+  clearTimeout(timeout);
+  setUpContext();
+}
+
+video.addEventListener("pause", () => {
+  endShifting();
+});

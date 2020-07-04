@@ -15,7 +15,7 @@ function main(ctx, canvas) {
   class Letter {
     constructor() {
       this.size = 100;
-      this.time = 500 + Math.random() * 100;
+      this.time = 25 + Math.random() * 100;
       this.timeLeft = this.time;
       this.text = letters[Math.floor(Math.random() * letters.length)];
 
@@ -71,7 +71,7 @@ function main(ctx, canvas) {
           "," +
           opacity +
           ")";
-        ctx.font = particle.size + "px monoton";
+        ctx.font = particle.size + "px orbitron";
 
         ctx.fillText(particle.text, particle.location.x, particle.location.y);
         ctx.fill();
@@ -91,7 +91,7 @@ function main(ctx, canvas) {
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
   }
-  const maximumLetters = 20;
+  const maximumLetters = 35;
 
   let letters = "CONTACT!".split(""),
     particles = [];
