@@ -1,9 +1,9 @@
-export function listenForEvents(setUpContext, shape) {
+export function listenForEvents(setUpContext) {
   window.addEventListener("load", function () {
     console.log("All assets are loaded");
   });
 
-  window.addEventListener("resize", () => setUpContext(shape));
+  window.addEventListener("resize", () => setUpContext());
 }
 
 const debounce = (func, wait, immediate) => {

@@ -1,200 +1,61 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-import { getPositions } from "./getPositions";
-import { placeItemsInPositions } from "./placeItemsInPositions";
 import { listenForEvents } from "./eventListeners";
 import "./styles/main.scss";
-import { newAnimation } from "./newAnimation";
+import { contactAnimation } from "./contactAnimation";
 
+// Register ScrollTrigger so it wouldn't get tree shaken.
 gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(MotionPathPlugin);
 
-const number = () => Math.floor(Math.random() * 255);
-// const circle = `
-// <div
-// style="left:1rem; top:1rem; box-shadow: inset 0 0 10px rgb(${number()}, ${number()}, ${number()});"
-// class="circle"
-// ></div>
-// `;
-
-// let body = document.getElementsByTagName("body")[0];
-// body.innerHTML = circle + body.innerHTML;
-
-const circleNode = document.getElementsByClassName("circle")[0];
-const squareNode = document.getElementsByClassName("square")[0];
-
-let coords = MotionPathPlugin.getRelativePosition(
-  circleNode,
-  squareNode,
-  [0.5, 0.5],
-  [0.5, 0.5]
-);
-
-// gsap.to(circleNode, {
-//   scrollTrigger: {
-//     trigger: ".landing",
-//     start: "0%",
-//     end: "50%",
-//     scrub: true,
-//   },
-//   x: coords.x,
-//   y: coords.y,
-//   borderRadius: "0",
-//   width: "5rem",
-//   height: "5rem",
-// });
-
-// coords = MotionPathPlugin.getRelativePosition(
-//   circleNode,
-//   document.getElementsByClassName("projects-title")[0],
-//   [0.5, 0],
-//   [0.5, 1]
-// );
-
-// gsap.to(circleNode, {
-//   scrollTrigger: {
-//     trigger: ".about-text",
-//     start: "0%",
-//     end: "70%",
-//     scrub: true,
-//   },
-//   x: "+=" + coords.x,
-//   y: "+=" + (coords.y + 450),
-//   zIndex: "-1",
-//   borderRadius: "0",
-//   width: "100%",
-//   height: "20rem",
-//   marginLeft: "5rem",
-// });
-
-// const circleHTML = `
-// <div
-// style="opacity: 0; box-shadow: inset 0 0 10px rgb(${number()}, ${number()}, ${number()});"
-// class="circle"
-// ></div>
-// `;
-
-// const arrayOfPositions = [
-//   { x: coords.x + 0, y: coords.y + 325 },
-//   { x: 0, y: 350 },
-//   { x: 50, y: 500 },
-//   { x: 50, y: 400 },
-//   { x: 50, y: 450 },
-//   { x: 0, y: 500 },
-//   { x: 0, y: 600 },
-// ];
-
-// arrayOfPositions.forEach((position, index) => {
-//   console.log(index);
-//   gsap.to(circleNodes[index], {
-//     motionPath: [{ x: 50, y: 50 }, position],
-//     scrollTrigger: {
-//       trigger: ".what-section",
-//       start: "top 70%",
-//       end: "50% 70%",
-//       scrub: true,
-//     },
-//     stagger: 0.5,
-//   });
-// });
-
-// gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
-// gsap.defaults({ ease: "none" });
-
-// gsap.set(circleNode, { xPercent: -50, yPercent: -50 });
-
-// var tl = gsap.timeline().to(
-//   circleNode,
-//   {
-//     defaults: {
-//       duration: 5,
-//       autoAlpha: 1,
-
-//       transformOrigin: "center",
-//       ease: "elastic(2.5, 1)",
-//     },
-//   },
-//   {
-//     scale: 2,
-//   }
-//   0.2
-// );
-
-// gsap
-//   .timeline({
-//     defaults: { duration: 5 },
-//     scrollTrigger: {
-//       trigger: ".landing",
-//       scrub: true,
-//       start: "top center",
-//       end: "bottom top",
-//       markers: true,
-//     },
-//   })
-//   .add(tl, 0);
-
-// console.log(ScrollTrigger);
-
-// gsap.to(circleNode, {
-//   ScrollTrigger: {
-//     trigger: ".landing",
-//     scrub: true,
-//     start: "top center",
-//     end: "bottom top",
-//     markers: true,
-//   },
-//   ...coords,
-//   duration: 10,
-// });
-
-// gsap.to(document.getElementsByTagName("body")[0], {
-//   backgroundColor: "red",
-//   duration: 10,
-// });
-
-// CANVAS
-
+// Controls what shapes are initialized. "circle" or "square"
 let currentShape = "circle";
+let coloredShapes = [];
+let shapeColors = ["#1f0e47", "#300317", "blue", "#061201", "#2B072A"];
 
 const canvas = document.getElementsByTagName("canvas")[0];
 const ctx = canvas.getContext("2d");
 
-function setUpContext(shape) {
-  let radius = (window.innerWidth + window.innerHeight) / 50;
-  coloredCircles = [];
+// Sets canvas to fullscreen, does a black background and initializes shapes.
+function setUpContext() {
+  coloredShapes = [];
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  ctx.clearRect(0, 0, canvas.innerWidth, canvas.innerHeight);
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  InitializeCircles(canvas, coloredCircles, shape);
+  InitializeShapes();
 }
 
-// The Circle class
-function ColoredShape(x, y, dx, dy, radius, color, shape) {
-  this.x = x;
-  this.y = y;
-  this.dx = dx;
-  this.dy = dy;
+// Listens for resize and load events.
 
-  this.radius = radius;
-  this.color = color;
+listenForEvents(setUpContext, currentShape);
 
-  this.draw = function () {
+class ColoredShape {
+  constructor(x, y, dx, dy, radius, color, shape) {
+    this.x = x;
+    this.y = y;
+    this.dx = dx;
+    this.dy = dy;
+
+    this.radius = radius;
+    this.color = color;
+    this.shape = shape;
+  }
+
+  draw() {
     ctx.beginPath();
-    if (shape === "circle") {
+    // Draws either a square or circle
+    if (this.shape === "circle") {
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-    } else if (shape === "square") {
-      ctx.rect(this.x, this.y, radius, radius);
+    } else if (this.shape === "square") {
+      ctx.rect(this.x, this.y, this.radius, this.radius);
     }
 
     ctx.strokeStyle = this.color;
-
     ctx.stroke();
-  };
+  }
 
-  this.update = function () {
-    if (shape === "circle") {
+  update() {
+    // Different coords inversion threshold depending if circle or square
+    if (this.shape === "circle") {
       if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
         this.dx = -this.dx;
       }
@@ -202,7 +63,7 @@ function ColoredShape(x, y, dx, dy, radius, color, shape) {
       if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
         this.dy = -this.dy;
       }
-    } else if (shape === "square") {
+    } else if (this.shape === "square") {
       if (this.x + this.radius > canvas.width || this.x < 0) {
         this.dx = -this.dx;
       }
@@ -211,123 +72,82 @@ function ColoredShape(x, y, dx, dy, radius, color, shape) {
         this.dy = -this.dy;
       }
     }
-
+    // Velocity of shape added to its position
     this.x += this.dx;
     this.y += this.dy;
 
     this.draw();
-  };
-}
-
-var coloredCircles = [];
-
-var circleColors = ["#1f0e47", "#300317", "blue", "#061201", "#2B072A"];
-
-function InitializeCircles(canvas, coloredCircles, shape, uniformColor) {
-  let radius = (window.innerWidth + window.innerHeight) / 50;
-  for (var i = 0; i < 5; i++) {
-    // Starting Position
-    var x = Math.random() * (canvas.width - radius * 2) + radius;
-    var y = Math.random() * (canvas.height - radius * 2) + radius;
-
-    // Speed in x and y direction
-    var dx = (Math.random() + 0.5) * 10;
-    var dy = (Math.random() + 0.5) * 10;
-
-    // Color
-    var color = uniformColor || circleColors[i];
-
-    coloredCircles.push(new ColoredShape(x, y, dx, dy, radius, color, shape));
   }
 }
 
-setUpContext(currentShape);
+function InitializeShapes() {
+  let radius = (window.innerWidth + window.innerHeight) / 50;
+  for (let i = 0; i < 5; i++) {
+    // Starting Position
+    let x = Math.random() * (canvas.width - radius * 2) + radius;
+    let y = Math.random() * (canvas.height - radius * 2) + radius;
 
-let animationActive = false;
+    // Speed in x and y direction
+    let dx = (Math.random() + 0.5) * 7;
+    let dy = (Math.random() + 0.5) * 7;
+
+    // Color
+    let color = shapeColors[i];
+
+    coloredShapes.push(
+      new ColoredShape(x, y, dx, dy, radius, color, currentShape)
+    );
+  }
+}
+
+setUpContext();
 
 function draw() {
+  // requestAnimationFrame passes a time value to draw() which can be used to get
+  // canculate time delta, which can be used to normalize animations
+  // on different refresh rate screens
+  // Tested it as is on 25hz-75hz and didn't see anything wrong with it though.
   requestAnimationFrame(draw);
-  if (!animationActive) {
-    for (var r = 0; r < coloredCircles.length; r++) {
-      for (let i = 0; i < 2; i++) {
-        coloredCircles[r].update();
-      }
+  for (let r = 0; r < coloredShapes.length; r++) {
+    // How many times update is called for next frame.
+    for (let i = 0; i < 2; i++) {
+      coloredShapes[r].update();
     }
   }
 }
-
+// If deltaTime is ever necessary, pass an initial value here or animation doesn't start.
 draw();
 
-// setTimeout(
-//   () =>
-//     coloredCircles.push(
-//       new ColoredShape(
-//         Math.random() * (canvas.width - radius * 2) + radius,
-//         Math.random() * (canvas.width - radius * 2) + radius,
-//         (Math.random() - 0.5) * 10,
-//         (Math.random() - 0.5) * 10,
-//         radius,
-//         "#FFF",
-//         "square"
-//       )
-//     ),
-//   5000
-// );
-
-listenForEvents(setUpContext, currentShape);
-
+// Chnages animation to squares when about is reached.
 ScrollTrigger.create({
   trigger: ".about",
   start: "top center",
   end: "center+=200px center",
-  onToggle: (self) => {
-    console.log("toggled, isActive:", self.isActive);
-    let color = 0;
-    coloredCircles = [];
+  onToggle: () => {
+    coloredShapes = [];
     if (currentShape === "square") {
       currentShape = "circle";
-      InitializeCircles(canvas, coloredCircles, "circle");
     } else {
       currentShape = "square";
-      color = 0.5;
-      InitializeCircles(canvas, coloredCircles, "square");
     }
-    // setUpContext(currentShape);
-    // ctx.fillStyle = `rgb(${color * 255}, ${color * 255}, ${color * 255})`;
-    // ctx.fillRect(0, 0, canvas.width, canvas.height);
+    InitializeShapes();
   },
   onUpdate: (self) => {
+    // Fades shapes out when changing between circles and squares.
     ctx.fillStyle = `rgba(0, 0, 0, ${self.progress.toFixed(1) * 0.3})`;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    console.log(
-      "progress:",
-      self.progress.toFixed(3),
-      "direction:",
-      self.direction,
-      "velocity",
-      self.getVelocity()
-    );
   },
 });
 
+// Starts letter animation and stops it on exit.
 ScrollTrigger.create({
   trigger: ".what-section",
   start: "top center",
   end: "center bottom",
   onEnter: () => {
-    newAnimation.start(ctx, canvas);
+    contactAnimation.start(ctx, canvas);
   },
   onEnterBack: () => {
-    newAnimation.stop(ctx, canvas);
-  },
-  onUpdate: (self) => {
-    console.log(
-      "progress:",
-      self.progress.toFixed(3),
-      "direction:",
-      self.direction,
-      "velocity",
-      self.getVelocity()
-    );
+    contactAnimation.stop(ctx, canvas);
   },
 });

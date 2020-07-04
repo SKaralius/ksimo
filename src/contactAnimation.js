@@ -1,7 +1,7 @@
 let go;
 let animId;
 
-export const newAnimation = {
+export const contactAnimation = {
   start: (ctx, canvas) => {
     go = true;
     animId = main(ctx, canvas);
