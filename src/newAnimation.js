@@ -1,4 +1,17 @@
-export function newAnimation(ctx, canvas) {
+let go;
+let animId;
+
+export const newAnimation = {
+  start: (ctx, canvas) => {
+    go = true;
+    animId = main(ctx, canvas);
+  },
+  stop: () => {
+    go = false;
+  },
+};
+
+function main(ctx, canvas) {
   class Letter {
     constructor() {
       this.size = 100;
@@ -66,8 +79,11 @@ export function newAnimation(ctx, canvas) {
         particle.setLocation(particle.speed.x, particle.speed.y);
         particles[i] = particle.updateVisibilty;
       }
-
-      return window.requestAnimationFrame(Letter.draw);
+      if (go) {
+        return window.requestAnimationFrame(Letter.draw);
+      } else {
+        cancelAnimationFrame(animId);
+      }
     }
 
     static clear() {
@@ -83,6 +99,9 @@ export function newAnimation(ctx, canvas) {
   for (let i = 0; i < maximumLetters; i++) {
     particles[i] = new Letter();
   }
-
-  return window.requestAnimationFrame(Letter.draw);
+  if (go) {
+    return window.requestAnimationFrame(Letter.draw);
+  } else {
+    cancelAnimationFrame(animId);
+  }
 }

@@ -31,42 +31,42 @@ let coords = MotionPathPlugin.getRelativePosition(
   [0.5, 0.5]
 );
 
-gsap.to(circleNode, {
-  scrollTrigger: {
-    trigger: ".landing",
-    start: "0%",
-    end: "50%",
-    scrub: true,
-  },
-  x: coords.x,
-  y: coords.y,
-  borderRadius: "0",
-  width: "5rem",
-  height: "5rem",
-});
+// gsap.to(circleNode, {
+//   scrollTrigger: {
+//     trigger: ".landing",
+//     start: "0%",
+//     end: "50%",
+//     scrub: true,
+//   },
+//   x: coords.x,
+//   y: coords.y,
+//   borderRadius: "0",
+//   width: "5rem",
+//   height: "5rem",
+// });
 
-coords = MotionPathPlugin.getRelativePosition(
-  circleNode,
-  document.getElementsByClassName("projects-title")[0],
-  [0.5, 0],
-  [0.5, 1]
-);
+// coords = MotionPathPlugin.getRelativePosition(
+//   circleNode,
+//   document.getElementsByClassName("projects-title")[0],
+//   [0.5, 0],
+//   [0.5, 1]
+// );
 
-gsap.to(circleNode, {
-  scrollTrigger: {
-    trigger: ".about-text",
-    start: "0%",
-    end: "70%",
-    scrub: true,
-  },
-  x: "+=" + coords.x,
-  y: "+=" + (coords.y + 450),
-  zIndex: "-1",
-  borderRadius: "0",
-  width: "100%",
-  height: "20rem",
-  marginLeft: "5rem",
-});
+// gsap.to(circleNode, {
+//   scrollTrigger: {
+//     trigger: ".about-text",
+//     start: "0%",
+//     end: "70%",
+//     scrub: true,
+//   },
+//   x: "+=" + coords.x,
+//   y: "+=" + (coords.y + 450),
+//   zIndex: "-1",
+//   borderRadius: "0",
+//   width: "100%",
+//   height: "20rem",
+//   marginLeft: "5rem",
+// });
 
 // const circleHTML = `
 // <div
@@ -161,12 +161,13 @@ const canvas = document.getElementsByTagName("canvas")[0];
 const ctx = canvas.getContext("2d");
 
 function setUpContext(shape) {
+  let radius = (window.innerWidth + window.innerHeight) / 50;
   coloredCircles = [];
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   ctx.clearRect(0, 0, canvas.innerWidth, canvas.innerHeight);
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  InitializeCircles(canvas, radius, coloredCircles, shape);
+  InitializeCircles(canvas, coloredCircles, shape);
 }
 
 // The Circle class
@@ -220,26 +221,18 @@ function ColoredShape(x, y, dx, dy, radius, color, shape) {
 
 var coloredCircles = [];
 
-var circleColors = ["#192841", "#192841", "blue", "#192841", "#2B072A"];
+var circleColors = ["#1f0e47", "#300317", "blue", "#061201", "#2B072A"];
 
-// Radius
-var radius = 50;
-
-function InitializeCircles(
-  canvas,
-  radius,
-  coloredCircles,
-  shape,
-  uniformColor
-) {
+function InitializeCircles(canvas, coloredCircles, shape, uniformColor) {
+  let radius = (window.innerWidth + window.innerHeight) / 50;
   for (var i = 0; i < 5; i++) {
     // Starting Position
     var x = Math.random() * (canvas.width - radius * 2) + radius;
     var y = Math.random() * (canvas.height - radius * 2) + radius;
 
     // Speed in x and y direction
-    var dx = (Math.random() - 0.5) * 10;
-    var dy = (Math.random() - 0.5) * 10;
+    var dx = (Math.random() + 0.5) * 10;
+    var dy = (Math.random() + 0.5) * 10;
 
     // Color
     var color = uniformColor || circleColors[i];
@@ -293,18 +286,18 @@ ScrollTrigger.create({
     coloredCircles = [];
     if (currentShape === "square") {
       currentShape = "circle";
-      InitializeCircles(canvas, radius, coloredCircles, "circle");
+      InitializeCircles(canvas, coloredCircles, "circle");
     } else {
       currentShape = "square";
       color = 0.5;
-      InitializeCircles(canvas, radius, coloredCircles, "square");
+      InitializeCircles(canvas, coloredCircles, "square");
     }
     // setUpContext(currentShape);
     // ctx.fillStyle = `rgb(${color * 255}, ${color * 255}, ${color * 255})`;
     // ctx.fillRect(0, 0, canvas.width, canvas.height);
   },
   onUpdate: (self) => {
-    ctx.fillStyle = `rgba(0, 0, 0, ${self.progress.toFixed(1) / 2})`;
+    ctx.fillStyle = `rgba(0, 0, 0, ${self.progress.toFixed(1) * 0.3})`;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     console.log(
       "progress:",
@@ -317,23 +310,15 @@ ScrollTrigger.create({
   },
 });
 
-let animationID = "";
-
 ScrollTrigger.create({
   trigger: ".what-section",
   start: "top center",
-  end: "center+=200px center",
-  onToggle: (self) => {
-    if (animationActive) {
-      animationActive = false;
-      cancelAnimationFrame(animationID);
-    } else {
-      cancelAnimationFrame(animationID);
-      animationActive = true;
-      animationID = newAnimation(ctx, canvas);
-    }
-    console.log("toggled, isActive:", self.isActive);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  end: "center bottom",
+  onEnter: () => {
+    newAnimation.start(ctx, canvas);
+  },
+  onEnterBack: () => {
+    newAnimation.stop(ctx, canvas);
   },
   onUpdate: (self) => {
     console.log(
