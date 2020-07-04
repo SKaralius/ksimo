@@ -3,7 +3,7 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  height: 4rem;
+  height: 3rem;
   width: 6rem;
   background-color: $secondaryColor;
 
@@ -15,6 +15,26 @@
 
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+  & > ul {
+    padding: 0 1rem;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    & > li {
+      padding: 0 0.5rem;
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+  }
+  & > ul,
+  a {
+    margin: 0;
+    line-height: 1.5rem;
+    text-decoration: none;
+    list-style-type: none;
+    font-size: 1.5rem;
+  }
 }
 
 .arrow {
@@ -23,10 +43,37 @@
   line-height: 0;
 }
 
+h5 {
+  color: $primaryColor;
+  margin: 0;
+  font-size: calc(#{$titleSize} - #{0.4rem});
+  font-family: $titleFont;
+  margin: 0;
+  margin-left: 1rem;
+  font-weight: 200;
+  word-spacing: 0.5rem;
+}
+
 h6 {
   margin: 0;
   color: $primaryColor;
   text-align: center;
-  font-size: 1.1rem;
-  font-family: monotonregular;
+  font-size: 1.3rem;
+  font-family: $fontAlt;
+}
+
+.x-button {
+  color: $primaryColor;
+  padding: 0;
+  text-align: center;
+  line-height: 0;
+  font-weight: 900;
+  font-size: 1.7rem;
+  width: 2rem;
+  height: 2rem;
+  position: fixed;
+  z-index: 1;
+  right: 0.5rem;
+  bottom: 4.5rem;
+  display: none;
 }

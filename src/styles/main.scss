@@ -7,17 +7,25 @@
 @import "projects";
 
 @font-face {
-  font-family: "monotonregular";
+  font-family: "monoton";
   src: url("../assets/fonts/monoton-regular-webfont.woff2") format("woff2"),
     url("../assets/fonts/monoton-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
-
 @font-face {
-  font-family: "scottiesregular";
-  src: url("../assets/fonts/scotties-webfont.woff2") format("woff2"),
-    url("../assets/fonts/scotties-webfont.woff") format("woff");
+  font-family: "orbitron";
+  src: url("../assets/fonts/orbitron-variablefont_wght-webfont.woff2")
+      format("woff2"),
+    url("../assets/fonts/orbitron-variablefont_wght-webfont.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "roboto";
+  src: url("../assets/fonts/roboto-medium-webfont.woff2") format("woff2"),
+    url("../assets/fonts/roboto-medium-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -38,4 +46,12 @@ canvas {
   position: fixed;
   top: 0;
   z-index: -1;
+}
+
+p {
+  color: $primaryColor;
+}
+
+b {
+  color: red;
 }

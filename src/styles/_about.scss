@@ -3,32 +3,48 @@
   height: 5rem;
 }
 
-h3 {
-  margin: 2rem;
-  font-size: 2rem;
-}
-
-.about-title-container {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-end;
-  margin-bottom: 3rem;
-  color: $primaryColor;
-}
-
 .hip-title {
+  color: $primaryColor;
   margin: 0;
-  font-size: 3.2rem;
+  font-size: calc(#{$titleSize} - #{0.4rem});
   font-family: $titleFont;
   margin: 0;
+  margin-left: 1rem;
   font-weight: 200;
 }
 
-.about-text {
-  margin: 2rem 2rem;
-  font-size: 1.2rem;
+.square {
+  margin: 0;
+  margin-left: 1rem;
   color: $primaryColor;
+  font-family: $fontAlt;
+  font-size: $titleSize + 0.5rem;
+}
+
+.about-text {
+  margin: 0 2rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: $primaryColor;
+  font-family: roboto;
   & > p {
     margin: 0;
+  }
+  & > p:last-child {
+    padding-top: 1rem;
+  }
+}
+
+button {
+  background-color: $tertiaryColor;
+  padding: 0.5rem;
+  & > a {
+    font-family: roboto;
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: $primaryColor;
+  }
+  &:hover {
+    background-color: lighten($color: $tertiaryColor, $amount: 40);
   }
 }

@@ -71,7 +71,7 @@ function main(ctx, canvas) {
           "," +
           opacity +
           ")";
-        ctx.font = particle.size + "px monotonregular";
+        ctx.font = particle.size + "px monoton";
 
         ctx.fillText(particle.text, particle.location.x, particle.location.y);
         ctx.fill();

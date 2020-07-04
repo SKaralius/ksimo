@@ -3,6 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { listenForEvents } from "./eventListeners";
 import "./styles/main.scss";
 import { contactAnimation } from "./contactAnimation";
+import { contact } from "./contact";
 
 // Register ScrollTrigger so it wouldn't get tree shaken.
 gsap.registerPlugin(ScrollTrigger);
@@ -10,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 // Controls what shapes are initialized. "circle" or "square"
 let currentShape = "circle";
 let coloredShapes = [];
-let shapeColors = ["#1f0e47", "#300317", "blue", "#061201", "#2B072A"];
+let shapeColors = ["#1f0e47", "#300317", "#160e6b", "#23042e", "#2B072A"];
 
 const canvas = document.getElementsByTagName("canvas")[0];
 const ctx = canvas.getContext("2d");
@@ -151,3 +152,13 @@ ScrollTrigger.create({
     contactAnimation.stop(ctx, canvas);
   },
 });
+
+const video = document.getElementsByTagName("video")[0];
+// if (window.screen.width < 352) {
+//   video.width = window.screen.width;
+// }
+if (window.screen.height < 812) {
+  video.height = window.screen.height - 80;
+}
+
+contact();

@@ -1,18 +1,33 @@
 .projects-title {
   margin: 0;
-  font-size: 3.2rem;
+  margin-left: 1rem;
+  font-size: calc(#{$titleSize} - #{1rem});
   font-family: $titleFont;
-  margin: 0;
   font-weight: 200;
   color: $primaryColor;
   word-spacing: 1rem;
 }
 
+.projects {
+  height: 250vh;
+}
+
 .projects-text {
-  margin: 2rem 2rem;
-  font-size: 1.2rem;
-  color: $tertiaryColor;
+  margin: 0 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: $primaryColor;
+  font-family: roboto;
   & > p {
     margin: 0;
   }
+  & > p:last-child {
+    padding-top: 1rem;
+  }
+}
+
+.video-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
