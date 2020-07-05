@@ -1,0 +1,67 @@
+@media screen and (min-width: 900px) and (min-height: 640px) {
+  h1 {
+    font-size: 7rem;
+  }
+  .web-developer {
+    font-size: 5rem;
+  }
+  .projects-text {
+    font-size: 1.5rem;
+  }
+  .hip-title {
+    font-size: 4rem;
+  }
+  .square {
+    font-size: 6rem;
+  }
+  .about-text {
+    font-size: 1.5rem;
+    margin: 3rem 2rem;
+  }
+  .projects-title {
+    font-size: 4rem;
+  }
+}
+
+@media screen and (min-width: 1200px) and (min-height: 640px) {
+  section {
+    margin: 0 10vw;
+  }
+  .about-text {
+    font-size: 2rem;
+  }
+  .projects-text {
+    font-size: 2rem;
+  }
+  h5 {
+    font-size: 7rem !important;
+  }
+}
+@media screen and (min-width: 1439px) and (min-height: 640px) {
+  section {
+    margin: 0 20vw;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  .projects-text {
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0;
+    flex-basis: 66.66%;
+  }
+  .projects-container {
+    display: flex;
+    justify-content: space-around;
+  }
+  .video-container {
+    flex-basis: 33.66%;
+    align-items: center;
+    margin: 0;
+  }
+  .projects {
+    height: auto;
+  }
+}

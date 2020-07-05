@@ -8,7 +8,7 @@
     <title>Simonas Karalius | Web Developer</title>
     <link rel="icon" href="/favicon-32x32.png?v=4a9773549091c227cd2eb82ccd9c5e3a">
     <link rel="manifest" href="/manifest.webmanifest">
-    <meta name="theme-color" content="#663399">
+    <meta name="theme-color" content="#000000">
     <link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=4a9773549091c227cd2eb82ccd9c5e3a">
     <link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=4a9773549091c227cd2eb82ccd9c5e3a">
     <link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=4a9773549091c227cd2eb82ccd9c5e3a">
@@ -28,20 +28,111 @@
     <meta name="twitter:title" content="Simonas Karalius - Web Developer">
     <meta name="twitter:description"
         content="Hi, I am Simonas Karalius - a Web Developer who creates fast, responsive, mobile first web applications. This is my website, KSIMO.">
+    <style type="text/css">
+        html {
+            overflow: hidden;
+            visibility: hidden;
+            background-color: black;
+            height: 100vh;
+        }
+
+        .spinner-container {
+            display: block;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .email {
+            visibility: hidden;
+        }
+
+        .spinner {
+            visibility: visible;
+            width: 50vmin;
+            height: 50vmin;
+            display: inline-block;
+            border: 1vmin solid blue;
+            animation: spinner 1s ease-in-out infinite alternate;
+        }
+
+        .spinner:before {
+            content: " ";
+            position: absolute;
+            z-index: -1;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 2vmin double #aa30d3;
+            animation: spinner 0.7s ease-in-out infinite alternate;
+        }
+
+        .spinner:after {
+            content: " ";
+            position: absolute;
+            z-index: -1;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 1vmin solid cyan;
+            animation: spinner 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg) scale(1, 1);
+                border-radius: 0px;
+            }
+
+            50% {
+                -webkit-transform: rotate(360deg) scale(0.5, 0.5);
+                border-radius: 50%;
+            }
+
+            100% {
+                -webkit-transform: rotate(-360deg) scale(0.1, 0.1);
+                border-radius: 25%;
+            }
+        }
+
+        @-webkit-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg) scale(1, 1);
+                border-radius: 0px;
+            }
+
+            50% {
+                -webkit-transform: rotate(360deg) scale(0.5, 0.5);
+                border-radius: 50%;
+            }
+
+            100% {
+                -webkit-transform: rotate(-360deg) scale(0.1, 0.1);
+                border-radius: 25%;
+            }
+        }
+    </style>
 </head>
 
+
 <body>
+    <div class="spinner-container">
+        <div class="spinner"></div>
+    </div>
     <section class="landing">
         <div class="title-container">
             <h1>
                 Simonas Karalius
             </h1>
-            <h2>Web</h2>
-            <div class="developer-dot">
-                <h2 class="developer">
-                    Developer
-                </h2>
-            </div>
+            <h2 class="web-developer">Web</h2>
+            <h2 class="web-developer">
+                Developer
+            </h2>
+        </div>
     </section>
     <section class="about">
         <h3 class="hip-title">It's hip to be</h3>
@@ -61,29 +152,33 @@
     </section>
     <section class="projects">
         <h4 class="projects-title">How I square the circle</h4>
-        <div class="video-container">
-            <video width="auto" height="812" src="./assets/videos/video.webm" type="video/webm" controls
-                preload="metadata"></video>
-        </div>
-        <div class="projects-text">
-            <p>
-                These are some of my projects that I have worked on, either with a <b>team</b> or by myself.
-                I work on web applications so I use <b>React</b>, state management libraries and various CSS tools every
-                day.
-                (favourites are Tailwind CSS and SASS).
-            </p>
-            <p>
-                But I decide on the techstack I'm going to use case by case. For example this website is made with
-                vanilla JavaScript. The fact that I'm not too attached to the technologies I know lets me be more
-                <b>versatile</b>.
-                I can see the bigger picture, compare various solutions and find the <b>perfect</b> one.
-            </p>
+        <div class="projects-container">
+            <div class="video-container">
+                <video width="auto" height="812" src="./assets/videos/video.webm" type="video/webm" controls
+                    poster="../src/assets/images/creativedesign.png" preload="metadata"></video>
+            </div>
+            <div class="projects-text">
+                <p>
+                    These are some of my projects that I have worked on, either with a <b>team</b> or by myself.
+                    I work on web applications primarily, so I use <b>React</b>, state management libraries and various
+                    CSS
+                    tools every day.
+                    (favourites are Tailwind CSS and SASS).
+                </p>
+                <p>
+                    But I decide on the techstack I'm going to use case by case. For example this website is made with
+                    vanilla JavaScript. The fact that I'm not too attached to the technologies I know lets me be more
+                    <b>versatile</b>.
+                    I can see the bigger picture, compare various solutions and find the <b>perfect</b> one.
+                </p>
+            </div>
         </div>
     </section>
-    <section class="what-section">
+    <section class="solutions">
         <h5>Let's talk solutions</h5>
     </section>
-    <div class="x-button-container">
+    <div>
+        <a class="email" href="mailto:k.simonas@hotmail.com">k.simonas@hotmail.com</a>
         <button class="x-button">X</button>
         <div class="contact-container">
             <h2 class="arrow">^</h2>
@@ -91,6 +186,32 @@
         </div>
     </div>
     <canvas></canvas>
+    <noscript>
+        <style>
+            html {
+                visibility: visible;
+                background-color: rgba(235, 217, 217, 0.685);
+                height: unset;
+                overflow: auto
+            }
+
+            .x-button-container {
+                visibility: hidden;
+            }
+
+            .email {
+                visibility: visible;
+            }
+
+            .spinner-container {
+                display: none;
+            }
+
+            .spinner {
+                visibility: hidden;
+            }
+        </style>
+    </noscript>
 </body>
 
 </html>

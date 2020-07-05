@@ -16,19 +16,6 @@ let shapeColors = ["#1f0e47", "#300317", "#160e6b", "#23042e", "#2B072A"];
 const canvas = document.getElementsByTagName("canvas")[0];
 const ctx = canvas.getContext("2d");
 
-// Sets canvas to fullscreen, does a black background and initializes shapes.
-function setUpContext() {
-  coloredShapes = [];
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  InitializeShapes();
-}
-
-// Listens for resize and load events.
-
-listenForEvents(setUpContext, currentShape);
-
 class ColoredShape {
   constructor(x, y, dx, dy, radius, color, shape) {
     this.x = x;
@@ -81,6 +68,14 @@ class ColoredShape {
   }
 }
 
+// Sets canvas to fullscreen, does a black background and initializes shapes.
+function setUpContext() {
+  coloredShapes = [];
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  InitializeShapes();
+}
 function InitializeShapes() {
   let radius = (window.innerWidth + window.innerHeight) / 50;
   for (let i = 0; i < 5; i++) {
@@ -101,8 +96,6 @@ function InitializeShapes() {
   }
 }
 
-setUpContext();
-
 function draw() {
   // requestAnimationFrame passes a time value to draw() which can be used to get
   // canculate time delta, which can be used to normalize animations
@@ -116,78 +109,99 @@ function draw() {
     }
   }
 }
-// If deltaTime is ever necessary, pass an initial value here or animation doesn't start.
-draw();
 
-// Chnages animation to squares when about is reached.
-ScrollTrigger.create({
-  trigger: ".about",
-  start: "top center",
-  end: "center+=200px center",
-  onToggle: () => {
-    coloredShapes = [];
-    if (currentShape === "square") {
-      currentShape = "circle";
+function app() {
+  // If deltaTime is ever necessary, pass an initial value here or animation doesn't start.
+  draw();
+
+  // Chnages animation to squares when about is reached.
+  ScrollTrigger.create({
+    trigger: ".about",
+    start: "top center",
+    end: "center+=200px center",
+    onToggle: () => {
+      coloredShapes = [];
+      if (currentShape === "square") {
+        currentShape = "circle";
+      } else {
+        currentShape = "square";
+      }
+      InitializeShapes();
+    },
+    onUpdate: (self) => {
+      // Fades shapes out when changing between circles and squares.
+      ctx.fillStyle = `rgba(0, 0, 0, ${self.progress.toFixed(1) * 0.3})`;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    },
+  });
+
+  // Starts letter animation and stops it on exit.
+  ScrollTrigger.create({
+    trigger: ".solutions",
+    start: "top center",
+    end: "center bottom",
+    onEnter: () => {
+      contactAnimation.start(ctx, canvas);
+    },
+    onEnterBack: () => {
+      contactAnimation.stop(ctx, canvas);
+    },
+  });
+
+  const video = document.getElementsByTagName("video")[0];
+  // if (window.screen.width < 352) {
+  //   video.width = window.screen.width;
+  // }
+  if (window.screen.width > 352) {
+    if (
+      window.screen.height < window.screen.width &&
+      window.screen.height < 812
+    ) {
+      video.height = window.screen.height;
     } else {
-      currentShape = "square";
+      video.width = 352;
+      video.style.height = "auto";
     }
-    InitializeShapes();
-  },
-  onUpdate: (self) => {
-    // Fades shapes out when changing between circles and squares.
-    ctx.fillStyle = `rgba(0, 0, 0, ${self.progress.toFixed(1) * 0.3})`;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-  },
-});
+  }
+  if (window.screen.height < 812) {
+    video.style.height = "";
+    if (window.screen.height > window.screen.width) {
+      video.height = window.screen.height - 80;
+    } else {
+      video.height = window.screen.height;
+    }
+  }
 
-// Starts letter animation and stops it on exit.
-ScrollTrigger.create({
-  trigger: ".what-section",
-  start: "top center",
-  end: "center bottom",
-  onEnter: () => {
-    contactAnimation.start(ctx, canvas);
-  },
-  onEnterBack: () => {
-    contactAnimation.stop(ctx, canvas);
-  },
-});
+  contact();
 
-const video = document.getElementsByTagName("video")[0];
-// if (window.screen.width < 352) {
-//   video.width = window.screen.width;
-// }
-if (window.screen.height < 812) {
-  video.height = window.screen.height - 80;
-}
+  let timeout;
 
-contact();
+  function startShifting() {
+    timeout = setTimeout(() => {
+      currentShape === "square"
+        ? (currentShape = "circle")
+        : (currentShape = "square");
+      setUpContext();
+      startShifting();
+    }, Math.random() * 3000 + 1500);
+  }
 
-let timeout;
-
-function startShifting() {
-  timeout = setTimeout(() => {
-    currentShape === "square"
-      ? (currentShape = "circle")
-      : (currentShape = "square");
-    setUpContext();
+  video.addEventListener("play", () => {
+    shapeColors = ["red", "green", "orange", "blue", "cyan"];
     startShifting();
-  }, Math.random() * 3000 + 1500);
+    setUpContext();
+  });
+
+  function endShifting() {
+    shapeColors = ["#1f0e47", "#300317", "#160e6b", "#23042e", "#2B072A"];
+    currentShape = "circle";
+    clearTimeout(timeout);
+    setUpContext();
+  }
+
+  video.addEventListener("pause", () => {
+    endShifting();
+  });
 }
 
-video.addEventListener("play", () => {
-  shapeColors = ["red", "green", "orange", "blue", "cyan"];
-  startShifting();
-  setUpContext();
-});
-
-function endShifting() {
-  shapeColors = ["#1f0e47", "#300317", "#160e6b", "#23042e", "#2B072A"];
-  currentShape = "circle";
-  clearTimeout(timeout);
-  setUpContext();
-}
-
-video.addEventListener("pause", () => {
-  endShifting();
-});
+listenForEvents(setUpContext, app);

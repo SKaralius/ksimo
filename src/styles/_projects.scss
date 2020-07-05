@@ -8,12 +8,7 @@
   word-spacing: 1rem;
 }
 
-.projects {
-  height: 200vh;
-}
-
 .projects-text {
-  margin: 0 2rem;
   font-size: 1.1rem;
   font-weight: 600;
   color: $primaryColor;
@@ -30,8 +25,12 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  margin: 1rem 0;
 }
 
 video {
   width: auto;
+}
+.projects-container {
+  padding: 0 2rem;
 }

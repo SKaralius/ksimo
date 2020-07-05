@@ -1,12 +1,11 @@
-.square {
-  width: 5rem;
-  height: 5rem;
+.about {
+  min-height: 50vh;
 }
 
 .hip-title {
   color: $primaryColor;
   margin: 0;
-  font-size: calc(#{$titleSize} - #{0.4rem});
+  font-size: calc(#{$titleSize} - #{1rem});
   font-family: $titleFont;
   margin: 0;
   margin-left: 1rem;
@@ -18,7 +17,7 @@
   margin-left: 1rem;
   color: $primaryColor;
   font-family: $fontAlt;
-  font-size: $titleSize + 0.5rem;
+  font-size: $titleSize;
 }
 
 .about-text {

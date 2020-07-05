@@ -5,6 +5,9 @@
 @import "about";
 @import "web";
 @import "projects";
+@import "responsive";
+@import "solutions";
+@import "loading";
 
 @font-face {
   font-family: "monoton";
@@ -35,10 +38,8 @@ body {
   margin: 0;
   width: 100%;
 }
-body {
-}
 
-section {
+.landing {
   height: 100vh;
 }
 
@@ -54,4 +55,8 @@ p {
 
 b {
   color: red;
+}
+.about,
+.projects {
+  margin-bottom: 5rem;
 }
