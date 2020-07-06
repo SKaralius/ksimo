@@ -29,9 +29,9 @@ export function listenForEvents(setUpContext, app) {
                 overflow: auto`;
     document.getElementsByClassName("spinner-container")[0].style.cssText = `
           display:none`;
+    setUpContext();
     setVideoHeight();
     app();
-    setUpContext();
   });
 
   window.addEventListener("resize", () => {
