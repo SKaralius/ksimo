@@ -47,7 +47,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.webm$/,
+        test: /\.(webm|mp4)$/,
         use: "file-loader?name=videos/[name].[ext]",
       },
       {
