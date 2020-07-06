@@ -1,5 +1,6 @@
-function setVideoHeight() {
-  const video = document.getElementsByTagName("video")[0];
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+function setVideoHeight(video) {
   if (window.screen.width > 352) {
     if (
       window.screen.height < window.screen.width &&
@@ -21,7 +22,7 @@ function setVideoHeight() {
   }
 }
 
-export function listenForEvents(setUpContext, app) {
+export function listenForEvents(setUpContext, app, video) {
   window.addEventListener("load", function () {
     document.getElementsByTagName("html")[0].style.cssText = `
                 visibility: unset;
@@ -30,29 +31,13 @@ export function listenForEvents(setUpContext, app) {
     document.getElementsByClassName("spinner-container")[0].style.cssText = `
           display:none`;
     setUpContext();
-    setVideoHeight();
+    setVideoHeight(video);
     app();
+    ScrollTrigger.refresh();
   });
 
   window.addEventListener("resize", () => {
     setUpContext();
-    setVideoHeight();
+    setVideoHeight(video);
   });
 }
-
-// Debounce if need to improve performance for egz on resize
-// const debounce = (func, wait, immediate) => {
-//   let timeout;
-//   return () => {
-//     const context = this,
-//       args = arguments;
-//     const later = () => {
-//       timeout = null;
-//       if (!immediate) func.apply(context, args);
-//     };
-//     const callNow = immediate && !timeout;
-//     clearTimeout(timeout);
-//     timeout = setTimeout(later, wait);
-//     if (callNow) func.apply(context, args);
-//   };
-// };

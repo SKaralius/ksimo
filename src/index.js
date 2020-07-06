@@ -15,6 +15,7 @@ let shapeColors = ["#1f0e47", "#300317", "#160e6b", "#23042e", "#2B072A"];
 
 const canvas = document.getElementsByTagName("canvas")[0];
 const ctx = canvas.getContext("2d");
+const video = document.getElementsByTagName("video")[0];
 
 class ColoredShape {
   constructor(x, y, dx, dy, radius, color, shape) {
@@ -180,4 +181,4 @@ function app() {
   });
 }
 
-listenForEvents(setUpContext, app);
+listenForEvents(setUpContext, app, video);
