@@ -1,6 +1,7 @@
 const TerserPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CnameWebpackPlugin = require("cname-webpack-plugin");
 
 module.exports = {
   mode: "none",
@@ -70,6 +71,9 @@ module.exports = {
   },
 
   plugins: [
+    new CnameWebpackPlugin({
+      domain: "ksimo.com",
+    }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       filename: "./index.html",
