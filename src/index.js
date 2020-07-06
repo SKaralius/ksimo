@@ -149,9 +149,6 @@ function app() {
   });
 
   const video = document.getElementsByTagName("video")[0];
-  // if (window.screen.width < 352) {
-  //   video.width = window.screen.width;
-  // }
   if (window.screen.width > 352) {
     if (
       window.screen.height < window.screen.width &&
@@ -160,7 +157,7 @@ function app() {
       video.height = window.screen.height;
     } else {
       video.width = 352;
-      video.style.height = "auto";
+      video.style.height = "100%";
     }
   }
   if (window.screen.height < 812) {

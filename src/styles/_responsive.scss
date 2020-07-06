@@ -65,3 +65,17 @@
     height: auto;
   }
 }
+
+@media screen and (max-width: 300px) {
+  h1,
+  h2,
+  h3 {
+    font-size: 2rem !important;
+  }
+  h5 {
+    font-size: 1.5rem !important;
+  }
+  h2 {
+    margin: 0;
+  }
+}
