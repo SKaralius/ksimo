@@ -153,21 +153,21 @@ function app() {
 
   let timeout;
 
-  function startShifting() {
-    timeout = setTimeout(() => {
-      currentShape === "square"
-        ? (currentShape = "circle")
-        : (currentShape = "square");
-      setUpContext();
-      startShifting();
-    }, Math.random() * 3000 + 1500);
-  }
+  // function startShifting() {
+  //   timeout = setTimeout(() => {
+  //     currentShape === "square"
+  //       ? (currentShape = "circle")
+  //       : (currentShape = "square");
+  //     setUpContext();
+  //     startShifting();
+  //   }, Math.random() * 3000 + 1500);
+  // }
 
-  video.addEventListener("play", () => {
-    shapeColors = ["red", "green", "orange", "blue", "cyan"];
-    startShifting();
-    setUpContext();
-  });
+  // video.addEventListener("play", () => {
+  //   shapeColors = ["red", "green", "orange", "blue", "cyan"];
+  //   startShifting();
+  //   setUpContext();
+  // });
 
   function endShifting() {
     shapeColors = ["#1f0e47", "#300317", "#160e6b", "#23042e", "#2B072A"];
@@ -176,9 +176,9 @@ function app() {
     setUpContext();
   }
 
-  video.addEventListener("pause", () => {
-    endShifting();
-  });
+  // video.addEventListener("pause", () => {
+  //   endShifting();
+  // });
 }
 
 listenForEvents(setUpContext, app, video);

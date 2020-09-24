@@ -2,9 +2,7 @@
 @import "landing";
 @import "contact";
 @import "circle";
-@import "about";
 @import "web";
-@import "projects";
 @import "responsive";
 @import "solutions";
 @import "loading";
@@ -13,15 +11,6 @@
   font-family: "monoton";
   src: url("../assets/fonts/monoton-regular-webfont.woff2") format("woff2"),
     url("../assets/fonts/monoton-regular-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "orbitron";
-  src: url("../assets/fonts/orbitron-variablefont_wght-webfont.woff2")
-      format("woff2"),
-    url("../assets/fonts/orbitron-variablefont_wght-webfont.woff")
-      format("woff");
   font-weight: normal;
   font-style: normal;
 }
