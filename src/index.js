@@ -1,10 +1,5 @@
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { listenForEvents } from "./eventListeners";
 import "./styles/main.scss";
-
-// Register ScrollTrigger so it wouldn't get tree shaken.
-gsap.registerPlugin(ScrollTrigger);
 
 // Controls what shapes are initialized. "circle" or "square"
 let currentShape = "circle";

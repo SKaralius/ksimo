@@ -10,14 +10,13 @@
     "start": "webpack -p && node server.js"
   },
   "author": "Simonas Karalius",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
     "autoprefixer": "^9.8.4",
     "babel-loader": "^8.1.0",
     "cname-webpack-plugin": "^2.0.1",
     "css-loader": "^3.6.0",
     "file-loader": "^6.0.0",
-    "gsap": "^3.3.4",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
     "mini-css-extract-plugin": "^0.9.0",

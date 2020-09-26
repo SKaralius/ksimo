@@ -1,16 +1,8 @@
 @import "config";
 @import "landing";
-@import "circle";
 @import "responsive";
 @import "solutions";
 
-@font-face {
-  font-family: "monoton";
-  src: url("../assets/fonts/monoton-regular-webfont.woff2") format("woff2"),
-    url("../assets/fonts/monoton-regular-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
 @font-face {
   font-family: "roboto";
   src: url("../assets/fonts/roboto-medium-webfont.woff2") format("woff2"),

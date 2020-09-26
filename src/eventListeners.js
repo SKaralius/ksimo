@@ -1,5 +1,3 @@
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 export function listenForEvents(setUpContext, app) {
   window.addEventListener("load", function () {
     document.getElementsByTagName("html")[0].style.cssText = `
@@ -14,7 +12,6 @@ export function listenForEvents(setUpContext, app) {
     // ScrollTrigger didnt help Chrome mobile to load the animations correctly.
 
     // Suqare is laoded too high and contact animation isnt laoded at all
-    ScrollTrigger.refresh();
   });
 
   window.addEventListener("resize", () => {
