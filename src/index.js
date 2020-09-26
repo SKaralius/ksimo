@@ -2,7 +2,6 @@ import { listenForEvents } from "./eventListeners";
 import "./styles/main.scss";
 
 // Controls what shapes are initialized. "circle" or "square"
-let currentShape = "circle";
 let coloredShapes = [];
 let shapeColors = ["#1f0e47", "#300317", "#160e6b", "#23042e", "#2B072A"];
 
@@ -10,7 +9,7 @@ const canvas = document.getElementsByTagName("canvas")[0];
 const ctx = canvas.getContext("2d");
 
 class ColoredShape {
-  constructor(x, y, dx, dy, radius, color, shape) {
+  constructor(x, y, dx, dy, radius, color) {
     this.x = x;
     this.y = y;
     this.dx = dx;
@@ -18,17 +17,12 @@ class ColoredShape {
 
     this.radius = radius;
     this.color = color;
-    this.shape = shape;
   }
 
   draw() {
     ctx.beginPath();
-    // Draws either a square or circle
-    if (this.shape === "circle") {
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-    } else if (this.shape === "square") {
-      ctx.rect(this.x, this.y, this.radius, this.radius);
-    }
+    // Draws a cricle
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
 
     ctx.strokeStyle = this.color;
     ctx.stroke();
@@ -36,22 +30,12 @@ class ColoredShape {
 
   update() {
     // Different coords inversion threshold depending if circle or square
-    if (this.shape === "circle") {
-      if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
-        this.dx = -this.dx;
-      }
+    if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+      this.dx = -this.dx;
+    }
 
-      if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
-        this.dy = -this.dy;
-      }
-    } else if (this.shape === "square") {
-      if (this.x + this.radius > canvas.width || this.x < 0) {
-        this.dx = -this.dx;
-      }
-
-      if (this.y + this.radius > canvas.height || this.y < 0) {
-        this.dy = -this.dy;
-      }
+    if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+      this.dy = -this.dy;
     }
     // Velocity of shape added to its position
     this.x += this.dx;
@@ -70,22 +54,23 @@ function setUpContext() {
   InitializeShapes();
 }
 function InitializeShapes() {
+  // Circle radius depends on screen size.
   let radius = (window.innerWidth + window.innerHeight) / 50;
+
+  // For each shape
   for (let i = 0; i < 5; i++) {
-    // Starting Position
+    // Random starting Position
     let x = Math.random() * (canvas.width - radius * 2) + radius;
     let y = Math.random() * (canvas.height - radius * 2) + radius;
 
-    // Speed in x and y direction
+    // Random speed in x and y direction
     let dx = (Math.random() + 0.5) * 7;
     let dy = (Math.random() + 0.5) * 7;
 
     // Color
     let color = shapeColors[i];
 
-    coloredShapes.push(
-      new ColoredShape(x, y, dx, dy, radius, color, currentShape)
-    );
+    coloredShapes.push(new ColoredShape(x, y, dx, dy, radius, color));
   }
 }
 

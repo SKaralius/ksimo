@@ -7,15 +7,10 @@ export function listenForEvents(setUpContext, app) {
     document.getElementsByClassName("spinner-container")[0].style.cssText = `
           display:none`;
     setUpContext();
-    // setVideoHeight(video);
     app();
-    // ScrollTrigger didnt help Chrome mobile to load the animations correctly.
-
-    // Suqare is laoded too high and contact animation isnt laoded at all
   });
 
   window.addEventListener("resize", () => {
     setUpContext();
-    // setVideoHeight(video);
   });
 }
