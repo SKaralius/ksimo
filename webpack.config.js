@@ -7,10 +7,13 @@ module.exports = {
   mode: "none",
   optimization: {
     minimize: true,
+    // Minimizes javascript
     minimizer: [new TerserPlugin()],
   },
+  // Additional modules
   module: {
     rules: [
+      // File loader rule for fonts
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
@@ -23,6 +26,7 @@ module.exports = {
           },
         ],
       },
+
       {
         test: /\.s[ac]ss$/i,
         use: [
@@ -35,18 +39,20 @@ module.exports = {
           "sass-loader",
         ],
       },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]",
-              outputPath: "assets/img/",
-            },
-          },
-        ],
-      },
+      // File loader rule for images
+      // {
+      //   test: /\.(png|jpe?g|gif)$/i,
+      //   use: [
+      //     {
+      //       loader: "file-loader",
+      //       options: {
+      //         name: "[name].[ext]",
+      //         outputPath: "assets/img/",
+      //       },
+      //     },
+      //   ],
+      // },
+      // Allows transpiling javascript. Enables ES6
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -54,6 +60,7 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      // Loads HTML and minimizes it.
       {
         test: /\.html$/,
         use: [
@@ -67,6 +74,7 @@ module.exports = {
   },
 
   plugins: [
+    // Allows for a CNAME file for Github reploy
     new CnameWebpackPlugin({
       domain: "ksimo.com",
     }),

@@ -1,4 +1,5 @@
 // server.js
+// Live-reloading and hot module replacement. Very useful feature for development in my opinion
 const express = require("express");
 const favicon = require("express-favicon");
 const path = require("path");
