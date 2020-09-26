@@ -48,10 +48,6 @@ module.exports = {
         ],
       },
       {
-        test: /\.(webm|mp4)$/,
-        use: "file-loader?name=videos/[name].[ext]",
-      },
-      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {

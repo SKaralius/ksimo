@@ -2,8 +2,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { listenForEvents } from "./eventListeners";
 import "./styles/main.scss";
-import { contactAnimation } from "./contactAnimation";
-import { contact } from "./contact";
 
 // Register ScrollTrigger so it wouldn't get tree shaken.
 gsap.registerPlugin(ScrollTrigger);
@@ -15,7 +13,6 @@ let shapeColors = ["#1f0e47", "#300317", "#160e6b", "#23042e", "#2B072A"];
 
 const canvas = document.getElementsByTagName("canvas")[0];
 const ctx = canvas.getContext("2d");
-const video = document.getElementsByTagName("video")[0];
 
 class ColoredShape {
   constructor(x, y, dx, dy, radius, color, shape) {
@@ -116,42 +113,27 @@ function app() {
   draw();
 
   // Chnages animation to squares when about is reached.
-  ScrollTrigger.create({
-    trigger: ".about",
-    start: "top center",
-    end: "center+=200px center",
-    onToggle: () => {
-      coloredShapes = [];
-      if (currentShape === "square") {
-        currentShape = "circle";
-      } else {
-        currentShape = "square";
-      }
-      InitializeShapes();
-    },
-    onUpdate: (self) => {
-      // Fades shapes out when changing between circles and squares.
-      ctx.fillStyle = `rgba(0, 0, 0, ${self.progress.toFixed(1) * 0.3})`;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    },
-  });
+  // ScrollTrigger.create({
+  //   trigger: ".about",
+  //   start: "top center",
+  //   end: "center+=200px center",
+  //   onToggle: () => {
+  //     coloredShapes = [];
+  //     if (currentShape === "square") {
+  //       currentShape = "circle";
+  //     } else {
+  //       currentShape = "square";
+  //     }
+  //     InitializeShapes();
+  //   },
+  //   onUpdate: (self) => {
+  //     // Fades shapes out when changing between circles and squares.
+  //     ctx.fillStyle = `rgba(0, 0, 0, ${self.progress.toFixed(1) * 0.3})`;
+  //     ctx.fillRect(0, 0, canvas.width, canvas.height);
+  //   },
+  // });
 
-  // Starts letter animation and stops it on exit.
-  ScrollTrigger.create({
-    trigger: ".solutions",
-    start: "top center",
-    end: "center bottom",
-    onEnter: () => {
-      contactAnimation.start(ctx, canvas);
-    },
-    onEnterBack: () => {
-      contactAnimation.stop(ctx, canvas);
-    },
-  });
-
-  contact();
-
-  let timeout;
+  // let timeout;
 
   // function startShifting() {
   //   timeout = setTimeout(() => {
@@ -169,16 +151,16 @@ function app() {
   //   setUpContext();
   // });
 
-  function endShifting() {
-    shapeColors = ["#1f0e47", "#300317", "#160e6b", "#23042e", "#2B072A"];
-    currentShape = "circle";
-    clearTimeout(timeout);
-    setUpContext();
-  }
+  // function endShifting() {
+  //   shapeColors = ["#1f0e47", "#300317", "#160e6b", "#23042e", "#2B072A"];
+  //   currentShape = "circle";
+  //   clearTimeout(timeout);
+  //   setUpContext();
+  // }
 
   // video.addEventListener("pause", () => {
   //   endShifting();
   // });
 }
 
-listenForEvents(setUpContext, app, video);
+listenForEvents(setUpContext, app);

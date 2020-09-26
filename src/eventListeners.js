@@ -1,6 +1,6 @@
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export function listenForEvents(setUpContext, app, video) {
+export function listenForEvents(setUpContext, app) {
   window.addEventListener("load", function () {
     document.getElementsByTagName("html")[0].style.cssText = `
                 visibility: visible;
