@@ -56,6 +56,7 @@
 
         .email {
             visibility: hidden;
+            height: 0;
         }
 
         .spinner {
@@ -129,9 +130,11 @@
 
 
 <body>
+    <!-- display:none after website loads-->
     <div class="spinner-container">
         <div class="spinner"></div>
     </div>
+
     <section class="landing">
         <div class="title-container">
             <h1>
@@ -146,9 +149,10 @@
 
     <section class="projects">
     </section>
-    <div>
-        <a class="email" href="mailto:k.simonas@hotmail.com">k.simonas@hotmail.com</a>
+    <div class="email">
+        <a href="mailto:k.simonas@hotmail.com">k.simonas@hotmail.com</a>
     </div>
+    <div class="glass"></div>
     <canvas></canvas>
     <!-- Display title and email, if javascript is disabled. -->
     <noscript>
@@ -160,12 +164,9 @@
                 overflow: auto
             }
 
-            .x-button-container {
-                visibility: hidden;
-            }
-
             .email {
                 visibility: visible;
+                height: auto;
             }
 
             .spinner-container {

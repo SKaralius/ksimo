@@ -1,12 +1,18 @@
 @import "config";
 @import "landing";
 @import "responsive";
-@import "solutions";
 
 @font-face {
   font-family: "roboto";
   src: url("../assets/fonts/roboto-medium-webfont.woff2") format("woff2"),
     url("../assets/fonts/roboto-medium-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "oneday";
+  src: url("../assets/fonts/ONEDAY.woff2") format("woff2"),
+    url("../assets/fonts/ONEDAY.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -21,20 +27,21 @@ body {
   height: 100vh;
 }
 
-canvas {
+.glass {
   position: fixed;
   top: 0;
+  left: 0;
+
+  height: 100%;
+  width: 100%;
+  // Blur effect
+  background: hsla(88, 25%, 11%, 0.1);
+  backdrop-filter: saturate(150%) blur(10vmin);
   z-index: -1;
 }
 
-p {
-  color: $primaryColor;
-}
-
-b {
-  color: red;
-}
-.about,
-.projects {
-  margin-bottom: 5rem;
+canvas {
+  position: fixed;
+  top: 0;
+  z-index: -2;
 }
