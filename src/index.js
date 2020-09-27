@@ -2,8 +2,9 @@ import { listenForEvents } from "./eventListeners";
 import "./styles/main.scss";
 
 // Controls what shapes are initialized. "circle" or "square"
+const colorPalette = ["#cacacc", "cyan", "#201EE1", "#821EE1", "#1E7DE1"];
 let coloredShapes = [];
-let shapeColors = ["#1f0e47", "#300317", "#160e6b", "#23042e", "#2B072A"];
+let shapeColors = colorPalette;
 
 const canvas = document.getElementsByTagName("canvas")[0];
 const ctx = canvas.getContext("2d");
@@ -58,17 +59,19 @@ function InitializeShapes() {
   let radius = (window.innerWidth + window.innerHeight) / 50;
 
   // For each shape
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 10; i++) {
     // Random starting Position
     let x = Math.random() * (canvas.width - radius * 2) + radius;
     let y = Math.random() * (canvas.height - radius * 2) + radius;
 
     // Random speed in x and y direction
-    let dx = (Math.random() + 0.5) * 7;
-    let dy = (Math.random() + 0.5) * 7;
-
+    let dx = (Math.random() + 0.5) * 1;
+    let dy = (Math.random() + 0.5) * 1;
+    let color = "black";
     // Color
-    let color = shapeColors[i];
+    if (i < 5) {
+      color = shapeColors[i];
+    }
 
     coloredShapes.push(new ColoredShape(x, y, dx, dy, radius, color));
   }

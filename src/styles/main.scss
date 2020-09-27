@@ -1,5 +1,6 @@
 @import "config";
 @import "landing";
+@import "projects";
 @import "responsive";
 
 @font-face {
@@ -35,8 +36,9 @@ body {
   height: 100%;
   width: 100%;
   // Blur effect
-  background: hsla(88, 25%, 11%, 0.1);
-  backdrop-filter: saturate(150%) blur(10vmin);
+  background: hsla(226, 44%, 22%, 0.116);
+  backdrop-filter: saturate(300%) blur(10vmax);
+
   z-index: -1;
 }
 

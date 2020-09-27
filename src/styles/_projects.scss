@@ -1,0 +1,24 @@
+.projects {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+
+  justify-content: center;
+
+  grid-template-areas:
+    "popitalk popitalk"
+    "startgg startgg";
+}
+
+.popitalk {
+  grid-area: popitalk;
+  display: flex;
+  align-items: center;
+  & > img {
+    max-width: 45vw;
+  }
+}
+
+p {
+  @include paragraphText;
+}

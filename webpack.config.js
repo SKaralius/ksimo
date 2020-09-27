@@ -40,18 +40,18 @@ module.exports = {
         ],
       },
       // File loader rule for images
-      // {
-      //   test: /\.(png|jpe?g|gif)$/i,
-      //   use: [
-      //     {
-      //       loader: "file-loader",
-      //       options: {
-      //         name: "[name].[ext]",
-      //         outputPath: "assets/img/",
-      //       },
-      //     },
-      //   ],
-      // },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "assets/img/",
+            },
+          },
+        ],
+      },
       // Allows transpiling javascript. Enables ES6
       {
         test: /\.js$/,

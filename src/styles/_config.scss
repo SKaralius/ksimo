@@ -5,3 +5,9 @@ $tertiaryColor: rgb(27, 34, 58);
 $titleFont: oneday;
 $fontText: roboto;
 $titleSize: 3rem;
+
+@mixin paragraphText {
+  font-family: $fontText;
+  color: $primaryColor;
+  font-size: 1.2rem;
+}
