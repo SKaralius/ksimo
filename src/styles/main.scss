@@ -48,14 +48,3 @@ canvas {
   top: 0;
   z-index: -2;
 }
-
-hr {
-  border: 0;
-  height: 5px;
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0.5),
-    rgba(255, 255, 255, 0)
-  );
-}

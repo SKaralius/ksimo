@@ -1,5 +1,5 @@
 .projects-title {
-  margin-left: 1rem;
+  padding-left: 1rem;
 }
 
 .projects {
@@ -7,6 +7,18 @@
   flex-direction: column;
 
   justify-content: center;
+
+  padding-bottom: 1rem;
+  border-width: 0;
+  border-width: 1rem 0;
+  border-style: solid;
+  border-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0)
+  );
+  border-image-slice: 1;
 }
 
 .popitalk {
@@ -22,7 +34,8 @@
   }
 }
 
-.popitalk-icon-and-title {
+.popitalk-icon-and-title,
+.startgg-icon-and-title {
   display: flex;
   width: 90%;
   justify-content: flex-start;
@@ -35,6 +48,22 @@
     margin: 0;
     margin-left: 0.5rem;
   }
+}
+
+.startgg-icon-and-title {
+  width: 100%;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  border-width: 0;
+  border-top-width: 0.2rem;
+  border-style: solid;
+  border-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0)
+  );
+  border-image-slice: 1;
 }
 
 .popitalk-features {
