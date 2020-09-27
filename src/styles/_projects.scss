@@ -37,6 +37,20 @@
   }
 }
 
+.popitalk-features {
+  margin: 1rem;
+  & > button {
+    background-color: $tertiaryColor;
+    border: none;
+    border-radius: 16px;
+    padding: 0.6rem;
+    margin: 0.2rem;
+
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: $primaryColor;
+  }
+}
 p,
 pre {
   max-width: 100%;
