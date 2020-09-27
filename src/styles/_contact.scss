@@ -1,0 +1,17 @@
+.contact {
+  // Makes contact visible, because it's hidden while website loads
+  visibility: visible;
+  height: unset;
+
+  display: flex;
+  flex-direction: column;
+
+  margin: 1rem 1rem;
+
+  & > a {
+    font-family: oneday;
+    color: $primaryColor;
+
+    margin: 0.5rem 0;
+  }
+}
