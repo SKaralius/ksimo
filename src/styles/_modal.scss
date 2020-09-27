@@ -1,0 +1,20 @@
+.feature-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: $tertiaryColor;
+}
+
+.modal-close-button {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+
+  z-index: 10;
+}
