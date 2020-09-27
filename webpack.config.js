@@ -52,6 +52,11 @@ module.exports = {
           },
         ],
       },
+      // File loader rule for videos
+      {
+        test: /\.(webm|mp4)$/,
+        use: "file-loader?name=videos/[name].[ext]",
+      },
       // Allows transpiling javascript. Enables ES6
       {
         test: /\.js$/,

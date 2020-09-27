@@ -28,6 +28,7 @@ export function listenForEvents(setUpContext, app) {
       } else {
         closeButtonRef = button;
         button.onclick = () => {
+          modal.innerHTML = "";
           modal.style.cssText = `
         display: none
         `;
