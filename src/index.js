@@ -1,5 +1,27 @@
 import { listenForEvents } from "./eventListeners";
 import "./styles/main.scss";
+// Videos
+import "../src/assets/videos/drafts.mp4";
+import "../src/assets/videos/drafts.webm";
+import "../src/assets/videos/emojis.mp4";
+import "../src/assets/videos/emojis.webm";
+import "../src/assets/videos/gif.mp4";
+import "../src/assets/videos/gif.webm";
+import "../src/assets/videos/live.mp4";
+import "../src/assets/videos/live.webm";
+import "../src/assets/videos/notifications.mp4";
+import "../src/assets/videos/notifications.webm";
+import "../src/assets/videos/popitalk.mp4";
+import "../src/assets/videos/popitalk.webm";
+import "../src/assets/videos/scroll.mp4";
+import "../src/assets/videos/scroll.webm";
+import "../src/assets/videos/sticky.mp4";
+import "../src/assets/videos/sticky.webm";
+// Images
+import "../src/assets/images/popitalk.jpg";
+import "../src/assets/images/pwa.jpg";
+import "../src/assets/images/startgg-icon.png";
+import "../src/assets/images/startgg.jpg";
 
 // Controls what shapes are initialized. "circle" or "square"
 const colorPalette = ["#cacacc", "cyan", "#201EE1", "#821EE1", "#1E7DE1"];
