@@ -2,28 +2,21 @@ import { selectContent } from "./featureModalContent";
 
 let timeout;
 
-function showModal({ modal, html, id }) {
+function showModal({ modal, id }) {
   timeout = setTimeout(() => {
     modal.style.cssText = `
         display: flex
         `;
     modal.innerHTML += selectContent(id);
-    // html.style.cssText += `
-    //       overflow-y: hidden !important;
-    //       `;
   }, 250);
 }
 
-function hideModal({ modal, html }) {
+function hideModal({ modal }) {
   if (timeout) clearTimeout(timeout);
   modal.innerHTML = "";
   modal.style.cssText = `
             display: none
           `;
-  // html.style.removeProperty("overflow-y");
-  // html.style.cssText += `
-  //         overflow-y: scroll;
-  //         `;
 }
 
 export function listenForEvents(setUpContext, app) {

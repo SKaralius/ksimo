@@ -21,6 +21,8 @@ class ColoredShape {
   }
 
   draw() {
+    // ctx.filter =
+    //   "contrast(1.4) sepia(1) drop-shadow(9px 9px 2px #e81) blur(10px)";
     ctx.beginPath();
     // Draws a cricle
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
@@ -56,7 +58,7 @@ function setUpContext() {
 }
 function InitializeShapes() {
   // Circle radius depends on screen size.
-  let radius = (window.innerWidth + window.innerHeight) / 50;
+  let radius = (window.innerWidth + window.innerHeight) / 4.25;
 
   // For each shape
   for (let i = 0; i < 10; i++) {

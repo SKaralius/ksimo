@@ -38,8 +38,8 @@ body {
   height: 100%;
   width: 100%;
   // Blur effect
-  background: hsla(226, 44%, 22%, 0.116);
-  backdrop-filter: saturate(300%) blur(10vmax);
+  // background: hsla(226, 44%, 22%, 0.116);
+  // backdrop-filter: saturate(300%) blur(10vmax);
 
   z-index: -1;
 }
@@ -48,6 +48,7 @@ canvas {
   position: fixed;
   top: 0;
   z-index: -2;
+  filter: blur(5vmax) saturate(200%) !important;
 }
 
 hr {
