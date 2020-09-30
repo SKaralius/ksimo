@@ -3,8 +3,8 @@ export function selectContent(id) {
   let response = "";
   function renderVideo(videoName) {
     return `<div class="feature-video-container">
-                  <video width="auto" height=${videoHeight} autoplay loop"
-                    preload="metadata" playsinline>
+                  <video width="auto" height=${videoHeight} autoplay loop muted playsinline
+                    preload="metadata">
                     <source src="./videos/${videoName}.webm" type="video/webm">
                     <source src="./videos/${videoName}.mp4" type="video/mp4">
                 </video>
