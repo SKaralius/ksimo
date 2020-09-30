@@ -8,3 +8,88 @@
     margin: 0;
   }
 }
+@media screen and (min-width: 400px) and (min-height: 600px) {
+  .feature-modal {
+    & > p {
+      width: 70%;
+      line-height: 1.8rem;
+    }
+  }
+}
+@media screen and (min-width: 600px) and (min-height: 400px) {
+  .popitalk-text,
+  .startgg-text {
+    display: flex;
+    justify-content: center;
+  }
+  .popitalk-text {
+    margin-top: 2rem;
+  }
+  .startgg-img-and-text {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    margin-right: 1rem;
+    & > img {
+      max-width: 40vw;
+    }
+  }
+  .startgg-text {
+    flex-direction: column;
+  }
+  p {
+    line-height: 1.8rem;
+  }
+  button {
+    padding: 1rem !important;
+    font-size: 1rem !important;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  button {
+    padding: 2rem !important;
+    font-size: 1.3rem !important;
+  }
+  .startgg-img-and-text {
+    & > img {
+      margin: auto auto;
+      max-height: 70vh;
+    }
+  }
+  p {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .title-container {
+    & > h1,
+    h2 {
+      font-size: 4rem;
+    }
+  }
+  .projects-title {
+    font-size: 4rem;
+  }
+  .popitalk {
+    & > video {
+      max-width: 80vw;
+    }
+  }
+  .startgg-img-and-text {
+    display: flex;
+    & > div {
+      flex-basis: 50%;
+    }
+  }
+  .projects,
+  .contact {
+    padding: 5vh 10vw;
+  }
+}
+@media screen and (min-width: 1500px) {
+  .projects,
+  .contact {
+    padding: 5vh 10vw;
+  }
+}

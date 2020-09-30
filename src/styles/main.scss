@@ -49,3 +49,45 @@ canvas {
   top: 0;
   z-index: -2;
 }
+
+hr {
+  height: 10px;
+  width: 100%;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0)
+  );
+  border: none;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $tertiaryColor;
+  border-radius: 16px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 16px;
+  background: $primaryColor;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: darken($primaryColor, 50);
+}
+
+html {
+  scrollbar-color: $primaryColor $tertiaryColor;
+}
+
+html {
+  scrollbar-width: thin !important;
+}

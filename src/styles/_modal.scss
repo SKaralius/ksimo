@@ -16,6 +16,9 @@
   flex-direction: column;
 
   pointer-events: none;
+  & > p {
+    text-align: center;
+  }
 }
 
 .feature-video-container {

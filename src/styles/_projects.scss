@@ -1,5 +1,5 @@
 .projects-title {
-  padding-left: 1rem;
+  margin-left: 10vw;
 }
 
 .projects {
@@ -29,6 +29,11 @@
   & > video {
     max-width: 90vw;
   }
+}
+.startgg-img-and-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   & > img {
     max-width: 90vw;
   }
@@ -41,6 +46,7 @@
   justify-content: flex-start;
   align-items: flex-end;
   margin: 1rem;
+  margin-left: 10vw;
   & > h3 {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     color: $primaryColor;
@@ -50,22 +56,6 @@
   }
 }
 
-.startgg-icon-and-title {
-  width: 100%;
-  padding-left: 1rem;
-  padding-top: 1rem;
-  border-width: 0;
-  border-top-width: 0.2rem;
-  border-style: solid;
-  border-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0.5),
-    rgba(255, 255, 255, 0)
-  );
-  border-image-slice: 1;
-}
-
 .popitalk-features,
 .startgg-features {
   margin: 1rem;
@@ -73,8 +63,7 @@
     @include buttonStyle;
   }
 }
-p,
-pre {
+p {
   max-width: 100%;
   @include paragraphText;
 }

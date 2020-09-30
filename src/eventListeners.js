@@ -8,9 +8,9 @@ function showModal({ modal, html, id }) {
         display: flex
         `;
     modal.innerHTML += selectContent(id);
-    html.style.cssText += `
-          overflow-y: hidden !important;
-          `;
+    // html.style.cssText += `
+    //       overflow-y: hidden !important;
+    //       `;
   }, 250);
 }
 
@@ -20,10 +20,10 @@ function hideModal({ modal, html }) {
   modal.style.cssText = `
             display: none
           `;
-  html.style.removeProperty("overflow-y");
-  html.style.cssText += `
-          overflow-y: scroll;
-          `;
+  // html.style.removeProperty("overflow-y");
+  // html.style.cssText += `
+  //         overflow-y: scroll;
+  //         `;
 }
 
 export function listenForEvents(setUpContext, app) {
