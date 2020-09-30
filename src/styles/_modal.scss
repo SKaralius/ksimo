@@ -9,7 +9,13 @@
 
   overflow-y: scroll;
 
-  background-color: rgba(27, 34, 58, 0.8);
+  background-color: rgba(27, 34, 58, 0.9);
+
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  pointer-events: none;
 }
 
 .feature-modal > p:last-child {
@@ -17,21 +23,6 @@
 }
 .feature-modal > div:last-child {
   padding-bottom: 5rem;
-}
-
-.modal-close-button {
-  display: none;
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-
-  @include buttonStyle;
-  background-color: $primaryColor;
-  color: $tertiaryColor;
-  padding: 1rem;
-  font-size: 1.1rem;
-
-  z-index: 10;
 }
 
 .feature-video-container {
