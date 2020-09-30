@@ -5,8 +5,8 @@ export function selectContent(id) {
     return `<div class="feature-video-container">
                   <video width="auto" height=${videoHeight} autoplay loop"
                     preload="metadata" playsinline>
-                    <source src="../src/assets/videos/${videoName}.webm" type="video/webm">
-                    <source src="../src/assets/videos/${videoName}.mp4" type="video/mp4">
+                    <source src="./videos/${videoName}.webm" type="video/webm">
+                    <source src="./videos/${videoName}.mp4" type="video/mp4">
                 </video>
             </div>`;
   }
@@ -93,7 +93,7 @@ export function selectContent(id) {
       break;
     case splitId[0] === "progressive":
       response += `<div class="feature-video-container">
-      <img height=${videoHeight} src="../src/assets/images/pwa.jpg" alt="icon on a mobile phone home screen">
+      <img height=${videoHeight} src="./assets/img/pwa.jpg" alt="icon on a mobile phone home screen">
       </div>
       `;
       break;
