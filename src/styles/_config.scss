@@ -15,3 +15,15 @@ $titleSize: 3rem;
 
   text-align: left;
 }
+
+@mixin buttonStyle {
+  background-color: $tertiaryColor;
+  border: none;
+  border-radius: 16px;
+  padding: 0.6rem;
+  margin: 0.2rem;
+
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: $primaryColor;
+}
