@@ -7,7 +7,7 @@ function showModal({ modal, id }) {
     modal.style.cssText = `
         display: flex
         `;
-    modal.innerHTML += selectContent(id);
+    modal.innerHTML = selectContent(id);
   }, 250);
 }
 
@@ -33,9 +33,9 @@ export function listenForEvents(setUpContext, app) {
     const buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
       button.onmouseover = () => showModal({ modal, html, id: button.id });
-      button.ontouchstart = () => showModal({ modal, html, id: button.id });
+      // button.onclick = () => showModal({ modal, html, id: button.id });
       button.onmouseleave = () => hideModal({ modal, html });
-      button.ontouchend = () => hideModal({ modal, html });
+      // modal.onclick = () => hideModal({ modal, html });
     }
     setUpContext();
     app();
