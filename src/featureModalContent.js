@@ -3,12 +3,12 @@ export function selectContent(id) {
   let response = "";
   function renderVideo(videoName) {
     return `<div class="feature-video-container">
-                  <video width="auto" height=${videoHeight} autoplay loop
+                  <video width="auto" height=${videoHeight} autoplay loop"
                     preload="metadata" playsinline>
                     <source src="../src/assets/videos/${videoName}.webm" type="video/webm">
                     <source src="../src/assets/videos/${videoName}.mp4" type="video/mp4">
                 </video>
-              </div>`;
+            </div>`;
   }
   const splitId = id.split("-");
   if (splitId[1]) {
@@ -16,21 +16,21 @@ export function selectContent(id) {
   }
   switch (true) {
     // Popitalk
-    case splitId[0] === "live":
-      response += `<p>Every message sent is saved in the database, but also transmitted from the server to all of the WebSocket subscribers.</p>`;
-      break;
-    case splitId[0] === "gif":
-      response += `<p>Our server uses Giphy API to server trending gifs to users. Users can also search for gifs.</p>`;
-      break;
-    case splitId[0] === "drafts":
-      response += `<p>If a user types a message, leaves the channel and then comes back to it, the message is saved and the user can continue from where they were.</p>`;
-      break;
-    case splitId[0] === "scroll":
-      response += `<p>If a user scrolls a channel to read some of the previous messages and then navigates somewhere else, their scroll position is saved and they can continue from where they were when they come back.</p>`;
-      break;
-    case splitId[0] === "emojis":
-      response += `<p>Emojis are implemented using emoji-mart library. Emojis use native icons for user system, that means that users don't have to download a package of emoji icons.</p>`;
-      break;
+    // case splitId[0] === "live":
+    //   response += `<p>Every message sent is saved in the database, but also transmitted from the server to all of the WebSocket subscribers.</p>`;
+    //   break;
+    // case splitId[0] === "gif":
+    //   response += `<p>Our server uses Giphy API to server trending gifs to users. Users can also search for gifs.</p>`;
+    //   break;
+    // case splitId[0] === "drafts":
+    //   response += `<p>If a user types a message, leaves the channel and then comes back to it, the message is saved and the user can continue from where they were.</p>`;
+    //   break;
+    // case splitId[0] === "scroll":
+    //   response += `<p>If a user scrolls a channel to read some of the previous messages and then navigates somewhere else, their scroll position is saved and they can continue from where they were when they come back.</p>`;
+    //   break;
+    // case splitId[0] === "emojis":
+    //   response += `<p>Emojis are implemented using emoji-mart library. Emojis use native icons for user system, that means that users don't have to download a package of emoji icons.</p>`;
+    //   break;
     case splitId[0] === "states":
       response += `<p>Chat messages have three states. Pending, Accepted and Rejected.
       When a message is first sent, a message with a pending state is added to the chat without waiting for a server response.
@@ -73,11 +73,11 @@ export function selectContent(id) {
       response += `<p>Both Reddit and Youtube components are wrapped in a preview component, which adds pagination, a button to expand the views, sets their height and gives them a shadow.
       </p>`;
       break;
-    case splitId[0] === "sticky":
-      response += `<p>State changes, such as expanding a social media view, persist between page navigation. This allows a user to keep their place when they navigate away from the page and come back to StartGG after viewing content.
-      This is achieved by saving React's state in localstorage when a component unmounts and checking local storage for state when it mounts.
-      </p>`;
-      break;
+    // case splitId[0] === "sticky":
+    //   response += `<p>State changes, such as expanding a social media view, persist between page navigation. This allows a user to keep their place when they navigate away from the page and come back to StartGG after viewing content.
+    //   This is achieved by saving React's state in localstorage when a component unmounts and checking local storage for state when it mounts.
+    //   </p>`;
+    //   break;
     case splitId[0] === "extendable":
       response += `<p>StartGG uses TypeScript on the front-end, together with reusable components that allows the project to be easily extendable in order to add more social media sites or more features for the existing ones.
       </p>`;

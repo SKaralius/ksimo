@@ -7,7 +7,7 @@
   width: 100vw;
   height: 100vh;
 
-  overflow-y: scroll;
+  overflow: hidden;
 
   background-color: rgba(27, 34, 58, 0.9);
 
@@ -18,16 +18,8 @@
   pointer-events: none;
 }
 
-.feature-modal > p:last-child {
-  padding-bottom: 5rem;
-}
-.feature-modal > div:last-child {
-  padding-bottom: 5rem;
-}
-
 .feature-video-container {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
 }
