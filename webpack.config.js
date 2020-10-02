@@ -52,6 +52,19 @@ module.exports = {
           },
         ],
       },
+      // File loader rule for PDF resume
+      {
+        test: /\.(pdf)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "assets/",
+            },
+          },
+        ],
+      },
       // File loader rule for videos
       {
         test: /\.(webm|mp4)$/,

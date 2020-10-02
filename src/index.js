@@ -22,6 +22,8 @@ import "../src/assets/images/popitalk.jpg";
 import "../src/assets/images/pwa.jpg";
 import "../src/assets/images/startgg-icon.png";
 import "../src/assets/images/startgg.jpg";
+// Resume
+import "../src/assets/a_resume_for_Simonas_Karalius.pdf";
 
 // Controls what shapes are initialized. "circle" or "square"
 const colorPalette = ["#cacacc", "cyan", "#201EE1", "#821EE1", "#1E7DE1"];
