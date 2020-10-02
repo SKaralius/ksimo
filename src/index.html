@@ -39,6 +39,7 @@
             overflow: hidden;
             visibility: hidden;
             background-color: black;
+
             height: 100%;
         }
 
@@ -154,8 +155,8 @@
     <section class="projects">
         <div class="popitalk">
 
-            <div class="popitalk-icon-and-title">
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"
+            <a href="https://popitalk.com/" class="popitalk-icon-and-title"><svg width="36" height="36"
+                    viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink">
                     <rect width="36" height="36" fill="url(#pattern0)" />
                     <defs>
@@ -167,7 +168,7 @@
                     </defs>
                 </svg>
                 <h3>Popitalk</h3>
-            </div>
+            </a>
             <video width="auto" height="auto" controls poster="../src/assets/images/popitalk.jpg" preload="metadata"
                 playsinline onloadstart="this.volume=0.5">
                 <source src="./assets/videos/popitalk.webm" type="video/webm">
@@ -183,6 +184,11 @@
                         writing SQL, server-side logic, WebSockets, React components, Redux actions, reducers
                         and styling with Tailwind CSS.
                     </p>
+                    <a class="visit" href="https://popitalk.com/">
+                        <h4>
+                            Visit Website
+                        </h4>
+                    </a>
                 </div>
                 <div>
                     <p>Features that I've worked on:</p>
@@ -203,16 +209,21 @@
         <hr>
 
         <div class="startgg">
-            <div class="startgg-icon-and-title">
+            <a href="https://startgg.com/" class="startgg-icon-and-title">
                 <img src="../src/assets/images/startgg-icon.png" alt="">
                 <h3>StartGG</h3>
-            </div>
+            </a>
             <div class="startgg-img-and-text">
                 <img src="../src/assets/images/startgg.jpg" alt="">
                 <div class="startgg-text">
                     <p>StartGG is a project that I have worked on alone. It is a website that combines Youtube and
                         Reddit
                         for a quick overview.</p>
+                    <a class="visit" href="https://startgg.com/">
+                        <h4>
+                            Visit Website
+                        </h4>
+                    </a>
                     <p>Notable features:</p>
                     <div class="startgg-features">
                         <button id="api">Uses Youtube and Reddit API </button>

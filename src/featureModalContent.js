@@ -14,6 +14,12 @@ export function selectContent(id) {
   if (splitId[1]) {
     response += renderVideo(splitId[0]);
   }
+
+  // Commented out cases are cases, in which a video is added first,
+  // then a comment is added to it.
+  // They are commented out to simplify layout.
+  // Text could be added to the modal after video ends, and the video removed.
+
   switch (true) {
     // Popitalk
     // case splitId[0] === "live":

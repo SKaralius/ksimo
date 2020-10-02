@@ -54,12 +54,7 @@ canvas {
 hr {
   height: 10px;
   width: 100%;
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0.5),
-    rgba(255, 255, 255, 0)
-  );
+  background-image: $gradient;
   border: none;
 }
 
@@ -70,7 +65,7 @@ hr {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: $tertiaryColor;
+  background: $secondaryColor;
   border-radius: 16px;
 }
 
@@ -86,7 +81,7 @@ hr {
 }
 
 html {
-  scrollbar-color: $primaryColor $tertiaryColor;
+  scrollbar-color: $primaryColor $secondaryColor;
 }
 
 html {

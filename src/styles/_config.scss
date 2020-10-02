@@ -1,10 +1,15 @@
 $primaryColor: rgb(232, 236, 238);
-$secondaryColor: rgb(136, 136, 250);
-$tertiaryColor: rgb(27, 34, 58);
+$secondaryColor: rgb(27, 34, 58);
 
 $titleFont: oneday;
 $fontText: roboto;
 $titleSize: 3rem;
+$gradient: linear-gradient(
+  to right,
+  $primaryColor,
+  mix($primaryColor, $secondaryColor, 50%),
+  $secondaryColor
+);
 
 @mixin paragraphText {
   font-family: $fontText;
@@ -18,7 +23,7 @@ $titleSize: 3rem;
 }
 
 @mixin buttonStyle {
-  background-color: $tertiaryColor;
+  background-color: $secondaryColor;
   border: none;
   border-radius: 16px;
   padding: 0.6rem;
@@ -29,4 +34,13 @@ $titleSize: 3rem;
   color: $primaryColor;
 
   user-select: none;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

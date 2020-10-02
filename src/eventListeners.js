@@ -1,21 +1,23 @@
 import { selectContent } from "./featureModalContent";
 
-let timeout;
-
 function showModal({ modal, id }) {
-  timeout = setTimeout(() => {
-    modal.style.cssText = `
-        display: flex
+  // Visible and Fade in
+  modal.style.cssText = `
+              display: flex;
+
+              opacity: 1;
+              animation-name: fadeInOpacity;
+              animation-iteration-count: 1;
+              animation-timing-function: ease-in;
+              animation-duration: 0.3s;
         `;
-    modal.innerHTML = selectContent(id);
-  }, 250);
+  modal.innerHTML = selectContent(id);
 }
 
 function hideModal({ modal }) {
-  if (timeout) clearTimeout(timeout);
   modal.innerHTML = "";
   modal.style.cssText = `
-            display: none
+              display: none;
           `;
 }
 
@@ -23,10 +25,12 @@ export function listenForEvents(setUpContext, app) {
   window.addEventListener("load", function () {
     const html = document.getElementsByTagName("html")[0];
     const modal = document.getElementsByClassName("feature-modal")[0];
+    // Makes some things visible.
     document.getElementsByTagName("html")[0].style.cssText = `
                 visibility: visible;
                 height: unset;
                 overflow: auto`;
+    // Hides spinner
     document.getElementsByClassName("spinner-container")[0].style.cssText = `
           display:none`;
     // Add show modal and hidde modal function to buttons
