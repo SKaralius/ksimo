@@ -4,7 +4,13 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CnameWebpackPlugin = require("cname-webpack-plugin");
 
 module.exports = {
+  // For dev on local network
   mode: "none",
+  devServer: {
+    host: "192.168.1.141", //your ip address
+    port: 8080,
+    disableHostCheck: true,
+  },
   optimization: {
     minimize: true,
     // Minimizes javascript
