@@ -22,6 +22,9 @@ import "../src/assets/images/popitalk.jpg";
 import "../src/assets/images/pwa.jpg";
 import "../src/assets/images/startgg-icon.png";
 import "../src/assets/images/startgg.jpg";
+// Not available without a direct link
+import "../src/assets/videos/asteroids.mp4";
+import "../src/assets/videos/100fights.mp4";
 // Resume
 import "../src/assets/a_resume_for_Simonas_Karalius.pdf";
 
